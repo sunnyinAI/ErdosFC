@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Erdos Federated Computing — many collaborators, one model, no shared data</title>
+<meta name="description" content="Erdos Federated Computing (EFC): a lightweight, extensible runtime for federated learning. By Sunny Gupta.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b1020; --bg2:#0f1630; --panel:#141d3a; --panel2:#1a244a;
+    --ink:#eaf0ff; --muted:#9aa6c9; --line:rgba(255,255,255,.09);
+    --accent:#5b8cff; --accent2:#39e0c8; --accent3:#b07cff;
+    --radius:18px; --maxw:1080px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    color:var(--ink); line-height:1.6;
+    background:
+      radial-gradient(1200px 600px at 85% -10%, rgba(91,140,255,.18), transparent 60%),
+      radial-gradient(900px 500px at 0% 10%, rgba(57,224,200,.10), transparent 55%),
+      linear-gradient(180deg,var(--bg),var(--bg2));
+    background-attachment:fixed;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  code,kbd,pre{font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(10px);
+      background:rgba(11,16,32,.7);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.2px}
+  .brand .dot{width:26px;height:26px;border-radius:8px;
+     background:conic-gradient(from 200deg,var(--accent),var(--accent2),var(--accent3),var(--accent));
+     box-shadow:0 0 18px rgba(91,140,255,.6)}
+  .nav-links{display:flex;gap:22px;align-items:center;font-size:14px;color:var(--muted)}
+  .nav-links a:hover{color:var(--ink)}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:12px;
+     font-weight:600;font-size:14px;border:1px solid var(--line);transition:.18s;cursor:pointer}
+  .btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent3));border:none;color:#fff;
+     box-shadow:0 10px 30px rgba(91,140,255,.35)}
+  .btn.primary:hover{transform:translateY(-1px)}
+  .btn.ghost:hover{background:var(--panel)}
+
+  /* hero */
+  header.hero{padding:70px 0 40px}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+  .pill{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--accent2);
+     background:rgba(57,224,200,.08);border:1px solid rgba(57,224,200,.25);padding:6px 12px;border-radius:999px}
+  h1{font-size:clamp(34px,5.2vw,56px);line-height:1.05;margin:18px 0 10px;font-weight:800;letter-spacing:-1px}
+  h1 .grad{background:linear-gradient(120deg,var(--accent2),var(--accent),var(--accent3));
+     -webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{font-size:18px;color:var(--muted);max-width:560px}
+  .cta{display:flex;gap:12px;flex-wrap:wrap;margin:26px 0 18px}
+  .install{display:flex;align-items:center;justify-content:space-between;gap:12px;
+     background:#0a0f22;border:1px solid var(--line);border-radius:12px;padding:12px 14px;max-width:520px}
+  .install code{color:#cfe0ff;font-size:13.5px}
+  .install .copy{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:8px;
+     padding:5px 9px;cursor:pointer;background:transparent}
+  .install .copy:hover{color:var(--ink);background:var(--panel)}
+  .badges{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+  .badge{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:4px 11px}
+
+  /* hero figure */
+  .figure{position:relative;aspect-ratio:1/1;max-width:380px;margin-left:auto;width:100%}
+  .figure svg{width:100%;height:100%}
+  .node-c{fill:var(--accent)}
+  .pulse{transform-origin:center;animation:pulse 3.2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
+  .edge{stroke:url(#eg);stroke-width:1.4;opacity:.5;stroke-dasharray:5 6;animation:flow 7s linear infinite}
+  @keyframes flow{to{stroke-dashoffset:-110}}
+
+  /* sections */
+  section{padding:46px 0}
+  .eyebrow{color:var(--accent2);font-weight:600;font-size:13px;letter-spacing:1.5px;text-transform:uppercase}
+  h2{font-size:clamp(24px,3.4vw,34px);margin:8px 0 6px;font-weight:750;letter-spacing:-.5px}
+  .sub{color:var(--muted);max-width:680px}
+
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
+  .card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);
+     border-radius:var(--radius);padding:22px;transition:.18s}
+  .card:hover{transform:translateY(-3px);border-color:rgba(91,140,255,.4)}
+  .card .ic{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;margin-bottom:12px;
+     background:rgba(91,140,255,.12);border:1px solid rgba(91,140,255,.3)}
+  .card h3{margin:0 0 6px;font-size:16.5px}
+  .card p{margin:0;color:var(--muted);font-size:14px}
+
+  pre{background:#0a0f22;border:1px solid var(--line);border-radius:14px;padding:18px 20px;overflow:auto;
+     font-size:13px;line-height:1.7;color:#d6e2ff}
+  .tok-k{color:#7aa2ff}.tok-s{color:#39e0c8}.tok-c{color:#6b779e;font-style:italic}.tok-f{color:#b07cff}
+
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+  .why{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);
+     border-radius:var(--radius);padding:26px}
+  .why blockquote{margin:0;border-left:3px solid var(--accent2);padding-left:14px;color:var(--ink);font-size:16px}
+
+  ul.road{list-style:none;padding:0;margin:18px 0 0}
+  ul.road li{padding:11px 0;border-bottom:1px solid var(--line);color:var(--muted);display:flex;gap:12px}
+  ul.road li b{color:var(--ink);font-weight:600}
+  ul.road li::before{content:"→";color:var(--accent)}
+
+  footer{border-top:1px solid var(--line);padding:34px 0;margin-top:30px;color:var(--muted);font-size:14px}
+  .foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:center}
+  .foot a{color:var(--ink);border-bottom:1px solid transparent}
+  .foot a:hover{border-color:var(--accent)}
+  .disclaimer{font-size:12px;color:#6b779e;margin-top:12px;max-width:640px}
+
+  @media(max-width:820px){
+    .hero-grid{grid-template-columns:1fr}.figure{order:-1;max-width:300px;margin:0 auto}
+    .grid{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr}.nav-links a:not(.btn){display:none}
+  }
+  @media(max-width:520px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap nav">
+  <a class="brand" href="#top"><span class="dot"></span> Erdos&nbsp;FC</a>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#how">How it works</a>
+    <a href="#start">Quickstart</a>
+    <a href="#roadmap">Roadmap</a>
+    <a class="btn ghost" href="https://github.com/sunnyinAI/ErdosComputing" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</div></nav>
+
+<a id="top"></a>
+<header class="hero"><div class="wrap hero-grid">
+  <div>
+    <span class="pill">● v0.1.0 · open source · Apache-2.0</span>
+    <h1>Erdos <span class="grad">Federated</span> Computing</h1>
+    <p class="lede">A lightweight, extensible runtime for federated learning.
+       Many collaborators, one model — <strong>no one hands over their data</strong>.</p>
+    <div class="cta">
+      <a class="btn primary" href="#start">Get started</a>
+      <a class="btn ghost" href="https://github.com/sunnyinAI/ErdosComputing" target="_blank" rel="noopener">★ View on GitHub</a>
+    </div>
+    <div class="install">
+      <code id="cmd">pip install -e ".[torch]"</code>
+      <button class="copy" onclick="copyCmd()">Copy</button>
+    </div>
+    <div class="badges">
+      <span class="badge">Python 3.10+</span>
+      <span class="badge">PyTorch</span>
+      <span class="badge">FedAvg</span>
+      <span class="badge">Privacy filters</span>
+      <span class="badge">Simulator</span>
+    </div>
+  </div>
+
+  <div class="figure" aria-hidden="true">
+    <svg viewBox="0 0 400 400">
+      <defs>
+        <linearGradient id="eg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#39e0c8"/><stop offset="1" stop-color="#b07cff"/>
+        </linearGradient>
+        <radialGradient id="srv" cx="50%" cy="50%" r="50%">
+          <stop offset="0" stop-color="#7aa2ff"/><stop offset="1" stop-color="#5b8cff"/>
+        </radialGradient>
+      </defs>
+      <!-- edges from clients to server -->
+      <g class="edges">
+        <line class="edge" x1="200" y1="200" x2="200" y2="56"/>
+        <line class="edge" x1="200" y1="200" x2="324" y2="128"/>
+        <line class="edge" x1="200" y1="200" x2="324" y2="272"/>
+        <line class="edge" x1="200" y1="200" x2="200" y2="344"/>
+        <line class="edge" x1="200" y1="200" x2="76"  y2="272"/>
+        <line class="edge" x1="200" y1="200" x2="76"  y2="128"/>
+      </g>
+      <!-- client nodes -->
+      <g>
+        <circle class="pulse" cx="200" cy="56"  r="16" fill="#39e0c8"/>
+        <circle class="pulse" cx="324" cy="128" r="16" fill="#5b8cff" style="animation-delay:.5s"/>
+        <circle class="pulse" cx="324" cy="272" r="16" fill="#b07cff" style="animation-delay:1s"/>
+        <circle class="pulse" cx="200" cy="344" r="16" fill="#39e0c8" style="animation-delay:1.5s"/>
+        <circle class="pulse" cx="76"  cy="272" r="16" fill="#5b8cff" style="animation-delay:2s"/>
+        <circle class="pulse" cx="76"  cy="128" r="16" fill="#b07cff" style="animation-delay:2.5s"/>
+      </g>
+      <!-- server node -->
+      <circle cx="200" cy="200" r="30" fill="url(#srv)"/>
+      <circle cx="200" cy="200" r="44" fill="none" stroke="#7aa2ff" stroke-opacity=".35"/>
+      <text x="200" y="205" text-anchor="middle" font-size="13" fill="#fff" font-family="Inter" font-weight="700">FedAvg</text>
+    </svg>
+  </div>
+</div></header>
+
+<section id="why"><div class="wrap two">
+  <div>
+    <span class="eyebrow">Why "Erdős"</span>
+    <h2>Collaboration without sharing.</h2>
+    <p class="sub">Paul Erdős published with more than 500 co-authors — his whole
+    body of work was built on collaboration, immortalized by the <em>Erdős
+    number</em>. Federated learning is collaboration of exactly that kind:
+    many parties improve a shared model together, while their private data never
+    leaves home. Erdos&nbsp;FC makes that pattern small enough to read and easy
+    to extend.</p>
+  </div>
+  <div class="why">
+    <blockquote>“Many minds, one result — and nobody hands over their notebook.”</blockquote>
+    <p class="sub" style="margin-top:14px">Each round, sites train locally and send
+    only model <strong>updates</strong>. The server averages them into a new
+    global model. The raw data stays put.</p>
+  </div>
+</div></section>
+
+<section id="features"><div class="wrap">
+  <span class="eyebrow">Feature highlights</span>
+  <h2>Everything in the federated loop — swappable.</h2>
+  <p class="sub">Small abstract base classes for each part of the loop, with working defaults out of the box.</p>
+  <div class="grid">
+    <div class="card"><div class="ic">🧭</div><h3>Controller / worker model</h3>
+      <p>A server-side workflow orchestrates rounds; client-side executors do the local training. Clean separation, like production FL runtimes.</p></div>
+    <div class="card"><div class="ic">➗</div><h3>Federated Averaging</h3>
+      <p>Sample-weighted FedAvg aggregation that is dtype-safe for weights and integer buffers alike. Drop-in slot for FedProx/FedOpt next.</p></div>
+    <div class="card"><div class="ic">🔒</div><h3>Privacy on the path</h3>
+      <p>A Gaussian filter clips and noises each update before it leaves the site, so the server never sees raw local weights.</p></div>
+    <div class="card"><div class="ic">🧪</div><h3>One-process simulator</h3>
+      <p>Run a whole federation locally behind a single <code>broadcast()</code> contract — then deploy the same code on a real transport.</p></div>
+    <div class="card"><div class="ic">🔥</div><h3>PyTorch "Client API"</h3>
+      <p>Wrap an ordinary PyTorch training loop into a federated client with almost no changes — bring a model and a dataset.</p></div>
+    <div class="card"><div class="ic">🧩</div><h3>Framework-agnostic core</h3>
+      <p>The APIs, aggregator, and runtime import no deep-learning library, leaving room for TensorFlow / JAX executors beside PyTorch.</p></div>
+  </div>
+</div></section>
+
+<section id="how"><div class="wrap">
+  <span class="eyebrow">How it works</span>
+  <h2>The round loop.</h2>
+  <p class="sub">Scatter the global model → each site trains on private data → filter the update → gather &amp; aggregate → repeat.</p>
+  <div class="two" style="margin-top:24px">
+    <pre><span class="tok-c"># every round, on the server</span>
+task   = Shareable(params=global_model)
+out    = server.<span class="tok-f">broadcast</span>(<span class="tok-s">"train"</span>, task, ctx)
+
+aggregator.<span class="tok-f">reset</span>(ctx)
+<span class="tok-k">for</span> name, update <span class="tok-k">in</span> out:
+    aggregator.<span class="tok-f">accept</span>(update, ctx)   <span class="tok-c"># weighted by n_i</span>
+global_model = aggregator.<span class="tok-f">aggregate</span>(ctx).params</pre>
+    <pre><span class="tok-c"># on each client / site</span>
+<span class="tok-k">class</span> <span class="tok-f">PTTrainer</span>(Executor):
+    <span class="tok-k">def</span> <span class="tok-f">execute</span>(self, task, shareable, ctx):
+        model.<span class="tok-f">load_state_dict</span>(shareable.params)
+        train(model, self.local_data)     <span class="tok-c"># data stays here</span>
+        <span class="tok-k">return</span> Shareable(params=model.<span class="tok-f">state_dict</span>(),
+                         meta={<span class="tok-s">"num_samples"</span>: n})</pre>
+  </div>
+</div></section>
+
+<section id="start"><div class="wrap">
+  <span class="eyebrow">Quickstart</span>
+  <h2>Clone to a training federation in one command.</h2>
+  <pre><span class="tok-c"># 1) install</span>
+git clone https://github.com/sunnyinAI/ErdosComputing.git
+cd ErdosComputing && pip install -e <span class="tok-s">".[torch]"</span>
+
+<span class="tok-c"># 2) run the end-to-end FedAvg demo (4 simulated sites, 5 rounds)</span>
+cd examples/hello-pytorch-mnist
+python run_simulation.py
+
+<span class="tok-c"># turn on the privacy filter</span>
+python run_simulation.py --dp-sigma 0.02</pre>
+  <p class="sub" style="margin-top:14px">No internet? The demo falls back to a synthetic dataset automatically, so it always runs.</p>
+</div></section>
+
+<section id="roadmap"><div class="wrap">
+  <span class="eyebrow">Roadmap</span>
+  <h2>Where it's heading.</h2>
+  <ul class="road">
+    <li><b>gRPC transport</b> behind the existing <code>broadcast</code> contract — same code, real network.</li>
+    <li><b>More aggregators</b> — FedProx, FedAdam / FedOpt, and variance-reduction corrections.</li>
+    <li><b>Secure aggregation</b> and a properly accounted differential-privacy path.</li>
+    <li><b>Provisioning</b> — TLS certificates and per-site startup kits for cross-organization runs.</li>
+    <li><b>More executors</b> — TensorFlow and JAX alongside PyTorch.</li>
+  </ul>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="foot">
+    <div><strong>Erdos Federated Computing</strong> — © 2026 Sunny Gupta · Apache-2.0</div>
+    <div>
+      <a href="https://sunnyinai.github.io" target="_blank" rel="noopener">Portfolio</a> ·
+      <a href="https://scholar.google.com/citations?user=-I-B6DgAAAAJ&hl=en" target="_blank" rel="noopener">Scholar</a> ·
+      <a href="https://github.com/sunnyinAI" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+  <p class="disclaimer">Built by Sunny Gupta, PhD Scholar (Machine Learning), IIT Bombay.
+  Erdos&nbsp;FC is an independent, educational federated-learning runtime inspired by the
+  design patterns common to modern FL frameworks. Not affiliated with or endorsed by NVIDIA.</p>
+</div></footer>
+
+<script>
+  function copyCmd(){
+    var t=document.getElementById('cmd').innerText;
+    navigator.clipboard&&navigator.clipboard.writeText(t);
+    var b=event.target; var o=b.innerText; b.innerText='Copied ✓';
+    setTimeout(function(){b.innerText=o;},1400);
+  }
+</script>
+</body>
+</html>

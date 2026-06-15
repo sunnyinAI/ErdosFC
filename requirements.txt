@@ -1,0 +1,6 @@
+# Core runtime
+numpy>=1.23
+
+# Required to run the bundled PyTorch examples (examples/hello-pytorch-mnist)
+torch>=2.0
+torchvision>=0.15
