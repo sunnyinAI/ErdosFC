@@ -13,6 +13,23 @@
 
 ---
 
+## This repository contains two Erdos projects
+
+| Project | What it is | Where |
+|---------|------------|-------|
+| **Erdos Federated Computing** (`erdos-fc`) | A lightweight runtime for **federated learning** — many sites train one model without sharing data. | [`erdos/`](erdos/) (this README) |
+| **Erdos Platform** (`erdos-platform`) | An **enterprise agentic AI** platform — composable agent cards, multi-agent orchestration, human-in-the-loop safety, continual learning, and real-time observability, in five layers. | [`platform/`](platform/) · [platform README](platform/README.md) |
+
+The **Erdos Platform** site is published from [`platform/web/`](platform/web/) to GitHub Pages
+(`https://sunnyinAI.github.io/ErdosComputing/`). Try the agent platform in one command:
+
+```bash
+pip install -e ./platform
+erdos-platform demo        # runs a governed, audited multi-agent pipeline offline
+```
+
+---
+
 ## Why "Erdos"?
 
 Paul Erdős published with more than 500 co-authors — his entire body of work was

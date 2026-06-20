@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Erdos Platform — Enterprise Agentic Technology</title>
+  <meta name="description" content="Erdos is the agent lifecycle platform: composable agent cards, multi-agent orchestration, human-in-the-loop safety, continual learning, and real-time observability — in five tightly-integrated layers." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="grid-bg" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <header class="nav">
+    <a class="brand" href="#top">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="26" height="26">
+          <circle cx="6" cy="16" r="3"/><circle cx="16" cy="6" r="3"/>
+          <circle cx="26" cy="16" r="3"/><circle cx="16" cy="26" r="3"/><circle cx="16" cy="16" r="2.4"/>
+          <path d="M6 16 16 6 26 16 16 26Z M16 6 16 26 M6 16 26 16" />
+        </svg>
+      </span>
+      <span>Erdos<b>Platform</b></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#layers">Technology</a>
+      <a href="#lifecycle">Lifecycle</a>
+      <a href="#suite">Suite</a>
+      <a href="#start">Get started</a>
+      <a class="btn btn-ghost" href="https://github.com/sunnyinAI/ErdosComputing">GitHub ↗</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">The Erdos Platform · Enterprise Agentic Technology</p>
+        <h1>The AI platform your engineers<br><span class="accent">wish they had time to build.</span></h1>
+        <p class="lede">
+          Erdos is an agent lifecycle platform — build, test, deploy, reinforce, and govern AI agents
+          from one observable, audited runtime. Five tightly-integrated layers covering composable
+          agent cards, multi-agent orchestration, human-in-the-loop safety, continual improvement,
+          and real-time observability.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#layers">Explore the stack</a>
+          <a class="btn btn-ghost" href="#start">Quickstart</a>
+        </div>
+        <ul class="badges">
+          <li>Dependency-light core</li>
+          <li>Runs offline, no key</li>
+          <li>Audit-ready</li>
+          <li>Apache-2.0</li>
+        </ul>
+      </div>
+
+      <div class="hero-panel" aria-hidden="true">
+        <div class="terminal">
+          <div class="term-bar"><span></span><span></span><span></span><em>erdos-platform demo</em></div>
+<pre class="term-body"><span class="c-dim">$ erdos-platform demo</span>
+Erdos Platform — healthcare-triage demo
+<span class="c-dim">policies / HIPAA · v2.4</span>  <span class="c-ok">● enforce</span>
+  PHI redaction · PII detection · write gating · audit
+
+[intake]   → structured fields extracted
+[triage]   → acuity 2  (chest pain + dyspnea)
+[referral] <span class="c-warn">⚠ approval required</span> → <span class="c-ok">dr.smith ✓</span>
+
+<span class="c-dim">── Insights ──────────────────────────</span>
+ total cost           <span class="c-ok">$0.0142</span>
+ safety interventions <span class="c-warn">4</span>
+ approvals            1
+ dollars saved        <span class="c-ok">$31.25</span>
+ audit chain          <span class="c-ok">verified ✓</span></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIFECYCLE -->
+    <section id="lifecycle" class="lifecycle">
+      <p class="section-kicker">The agentic lifecycle</p>
+      <h2>Many tools. One platform.</h2>
+      <div class="stages">
+        <div class="stage" data-stage="build">   <span class="stage-no">01</span><h3>Build</h3><p>Compose agent cards from prompts, skills, memory, tools, and MCP servers.</p><span class="stage-tag tag-blue">BLUE</span></div>
+        <div class="stage" data-stage="test">    <span class="stage-no">02</span><h3>Test</h3><p>Score agents against rigorous evaluation suites before they ship.</p><span class="stage-tag tag-red">RED</span></div>
+        <div class="stage" data-stage="deploy">  <span class="stage-no">03</span><h3>Deploy</h3><p>Run multi-agent pipelines with human-in-the-loop gates.</p><span class="stage-tag tag-blue">BLUE</span></div>
+        <div class="stage" data-stage="reinforce"><span class="stage-no">04</span><h3>Reinforce</h3><p>Learn from every trajectory — agents that improve release over release.</p><span class="stage-tag tag-green">GREEN</span></div>
+        <div class="stage" data-stage="govern">  <span class="stage-no">05</span><h3>Govern</h3><p>Policy enforcement, cost, and a tamper-evident audit trail.</p><span class="stage-tag tag-green">GREEN</span></div>
+      </div>
+    </section>
+
+    <!-- LAYERS -->
+    <section id="layers" class="layers">
+      <p class="section-kicker">Enterprise agentic technology</p>
+      <h2>Five tightly-integrated layers</h2>
+      <p class="section-sub">Each layer is a real Python package. The core is standard-library only, so it reads, runs, and ships anywhere.</p>
+
+      <div class="layer-grid">
+        <article class="layer reveal">
+          <div class="layer-head"><span class="layer-no">01</span><h3>Intelligence Layer</h3></div>
+          <p>Composable <b>agent cards</b> — prompt, skills, memory, MCP servers, and a typed tool library wired into one reusable, versioned object.</p>
+          <code class="layer-code">erdos_platform.intelligence</code>
+        </article>
+
+        <article class="layer reveal">
+          <div class="layer-head"><span class="layer-no">02</span><h3>Orchestration Layer</h3></div>
+          <p>Multi-agent <b>pipelines</b> — chain agents into steps that pass artifacts forward, with approval gates between them. Low-code by construction.</p>
+          <code class="layer-code">erdos_platform.orchestration</code>
+        </article>
+
+        <article class="layer reveal">
+          <div class="layer-head"><span class="layer-no">03</span><h3>Safety Layer</h3></div>
+          <p>Multi-approver <b>human-in-the-loop</b> governance, admin-configurable <b>write gates</b>, and PHI/PII-aware redaction on every input and output.</p>
+          <code class="layer-code">erdos_platform.safety</code>
+        </article>
+
+        <article class="layer reveal">
+          <div class="layer-head"><span class="layer-no">04</span><h3>Learning Layer</h3></div>
+          <p>Trajectory-driven <b>evaluation</b> and optimization, dataset synthesis, and <b>refined memories</b> written back to agents — versioned upgrades.</p>
+          <code class="layer-code">erdos_platform.learning</code>
+        </article>
+
+        <article class="layer reveal">
+          <div class="layer-head"><span class="layer-no">05</span><h3>Insights Layer</h3></div>
+          <p>Real-time <b>cost &amp; ROI</b> dashboards, agent metrics, event-replay <b>tracing</b>, and a hash-chained, tamper-evident <b>audit trail</b>.</p>
+          <code class="layer-code">erdos_platform.insights</code>
+        </article>
+
+        <article class="layer layer-cta reveal">
+          <h3>Build agents.<br>Keep control.</h3>
+          <p>Don't hand your agentic future to a single model provider — own the lifecycle.</p>
+          <a class="btn btn-primary" href="#start">Get started →</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ARCHITECTURE -->
+    <section id="architecture" class="architecture">
+      <p class="section-kicker">How it fits together</p>
+      <h2>One governed runtime, end to end</h2>
+      <div class="arch-diagram">
+        <svg viewBox="0 0 760 300" role="img" aria-label="Erdos architecture: safety and insights wrap orchestration of intelligence agents, feeding the learning loop.">
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" fill="#f5a623"/>
+            </marker>
+          </defs>
+          <rect x="10" y="10" width="740" height="280" rx="16" class="a-outer-rect"/>
+          <text x="28" y="36" class="a-label">03 · SAFETY  —  policy · redaction · HITL write gates</text>
+
+          <rect x="34" y="52" width="692" height="196" rx="12" class="a-mid-rect"/>
+          <text x="52" y="78" class="a-label-dim">05 · INSIGHTS  —  tracing · cost/ROI · audit trail</text>
+
+          <rect x="60" y="92" width="640" height="100" rx="10" class="a-inner-rect"/>
+          <text x="78" y="116" class="a-label-dim">02 · ORCHESTRATION  —  pipeline</text>
+
+          <g class="a-agent"><rect x="92" y="126" width="150" height="50" rx="8"/><text x="167" y="156">01 Intake</text></g>
+          <g class="a-agent"><rect x="305" y="126" width="150" height="50" rx="8"/><text x="380" y="156">01 Triage</text></g>
+          <g class="a-agent"><rect x="518" y="126" width="150" height="50" rx="8"/><text x="593" y="156">01 Referral</text></g>
+          <path d="M242 151 L305 151" class="a-flow"/><path d="M455 151 L518 151" class="a-flow"/>
+
+          <text x="380" y="232" class="a-loop">04 · LEARNING  —  trajectory → evaluate → refine ↺</text>
+        </svg>
+      </div>
+    </section>
+
+    <!-- GET STARTED -->
+    <section id="start" class="start">
+      <p class="section-kicker">Get started</p>
+      <h2>From idea to a governed pipeline in a few lines</h2>
+      <div class="start-grid">
+        <div class="start-step">
+          <h4>Install</h4>
+          <div class="code-block">
+            <button class="copy" data-copy="pip install -e ./platform" title="Copy">copy</button>
+<pre><code><span class="c-dim"># clone, then from the repo root</span>
+pip install -e ./platform
+<span class="c-dim"># live Claude calls (optional)</span>
+pip install -e "./platform[anthropic]"</code></pre>
+          </div>
+        </div>
+        <div class="start-step">
+          <h4>Build &amp; run a pipeline</h4>
+          <div class="code-block">
+            <button class="copy" data-copy='from erdos_platform import Agent, AgentCard, Pipeline, Step' title="Copy">copy</button>
+<pre><code><span class="c-key">from</span> erdos_platform <span class="c-key">import</span> Agent, AgentCard, Pipeline, Step
+
+triage = Agent(AgentCard(
+    name=<span class="c-str">"Triage"</span>,
+    system=<span class="c-str">"You triage support tickets."</span>,
+))
+pipe = Pipeline(<span class="c-str">"support"</span>, [
+    Step(<span class="c-str">"triage"</span>, triage, output_key=<span class="c-str">"triage"</span>),
+])
+print(pipe.run(<span class="c-str">"Dashboard is down"</span>).final_output)</code></pre>
+          </div>
+        </div>
+      </div>
+      <p class="start-note">No API key? It runs offline on the built-in echo provider. Set <code>ANTHROPIC_API_KEY</code> to run on <code>claude-opus-4-8</code>.</p>
+    </section>
+
+    <!-- SUITE -->
+    <section id="suite" class="suite">
+      <p class="section-kicker">The product suite</p>
+      <h2>Plan · Build · Test · Govern — in one platform</h2>
+      <div class="suite-grid">
+        <div class="suite-card"><h3>Agent Builder</h3><p>Compose deep agents — skills, tools, memory, MCP — with guardrails baked in.</p></div>
+        <div class="suite-card"><h3>Evaluation &amp; QA</h3><p>Continuous scoring, regression detection, and per-metric reports.</p></div>
+        <div class="suite-card"><h3>Continual Learning</h3><p>Agents adapt in production, getting smarter with every run.</p></div>
+        <div class="suite-card"><h3>Governance &amp; Audit</h3><p>HITL approvals, write gates, cost control, and tamper-evident logs.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand">
+      <span>Erdos<b>Platform</b></span>
+      <p>Enterprise agentic technology — build, test, deploy, reinforce, and govern AI agents from one runtime.</p>
+    </div>
+    <div class="footer-links">
+      <a href="https://github.com/sunnyinAI/ErdosComputing">GitHub</a>
+      <a href="#layers">Technology</a>
+      <a href="#start">Get started</a>
+    </div>
+    <p class="footer-fine">© 2026 Sunny Gupta · Apache-2.0. An independent, educational agent-lifecycle framework.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
