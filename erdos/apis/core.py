@@ -33,10 +33,25 @@ class TaskName:
 
 
 class FLComponent:
-    """Base class for every Erdos FC component; provides a named logger."""
+    """Base class for every Erdos FC component.
+
+    Provides a named logger and participates in the run's event bus: override
+    :meth:`handle_event` to react to lifecycle events, or call :meth:`fire_event`
+    to publish one. Both are no-ops unless a :class:`~erdos.engine.RunEngine` is
+    attached to the context, so components work standalone too.
+    """
 
     def __init__(self) -> None:
         self.logger = logging.getLogger(self.__class__.__name__)
+
+    def handle_event(self, event_type: str, fl_ctx: "FLContext") -> None:
+        """React to a lifecycle event. Default: do nothing."""
+
+    def fire_event(self, event_type: str, fl_ctx: "FLContext") -> None:
+        """Fire a lifecycle event through the engine, if one is attached."""
+        engine = fl_ctx.get_engine()
+        if engine is not None:
+            engine.fire_event(event_type, fl_ctx)
 
 
 class Executor(FLComponent, ABC):

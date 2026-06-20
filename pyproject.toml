@@ -29,9 +29,18 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-# Everything needed to run the bundled examples.
+# Everything needed to run the bundled PyTorch examples.
 torch = ["torch>=2.0", "torchvision>=0.15"]
-dev = ["pytest>=7.0", "ruff>=0.1"]
+# Compact MessagePack codec (faster/smaller than the stdlib JSON default).
+fast = ["msgpack>=1.0"]
+# Real networked transport (gRPC) for cross-process / cross-host runs.
+net = ["grpcio>=1.50"]
+# TLS/mTLS provisioning: certificate authority and per-site startup kits.
+secure = ["cryptography>=40.0"]
+dev = ["pytest>=7.0", "ruff>=0.1", "msgpack>=1.0"]
+
+[project.scripts]
+erdos = "erdos.cli:main"
 
 [project.urls]
 Homepage = "https://github.com/sunnyinAI/ErdosComputing"

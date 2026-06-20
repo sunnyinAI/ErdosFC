@@ -29,11 +29,20 @@ from .apis.core import (
     FLComponent,
     TaskName,
 )
+from .apis.model import FLModel, ParamsType
 from .apis.shareable import FLContext, Shareable
 from .aggregators.fedavg import FedAvgAggregator
 from .client import Client
+from .codec import Codec, JsonCodec, MsgpackCodec, default_codec
+from .engine import EventType, FLContextKey, RunEngine
+from .executors.numpy_trainer import NumpyTrainer
+from .filters.exclude import ExcludeVars
+from .job import Job
 from .server import Server
 from .simulator import Simulator
+from .transport import InProcessTransport, TaskReply, Transport
+from .widgets import BestModelSelector, EarlyStopping, ModelPersistor
+from .workflows.base import BaseModelController
 from .workflows.fedavg import FedAvg
 
 # PyTorch-dependent components are optional so that `import erdos` works even
@@ -59,13 +68,36 @@ __all__ = [
     "Filter",
     "Controller",
     "TaskName",
+    "FLModel",
+    "ParamsType",
     # runtime
     "Server",
     "Client",
     "Simulator",
+    "Job",
+    # executors / filters (torch-free)
+    "NumpyTrainer",
+    "ExcludeVars",
+    # transport + serialization
+    "Transport",
+    "InProcessTransport",
+    "TaskReply",
+    "Codec",
+    "JsonCodec",
+    "MsgpackCodec",
+    "default_codec",
+    # event bus
+    "RunEngine",
+    "EventType",
+    "FLContextKey",
     # algorithms
     "FedAvg",
+    "BaseModelController",
     "FedAvgAggregator",
+    # widgets
+    "BestModelSelector",
+    "EarlyStopping",
+    "ModelPersistor",
     # torch-dependent (may be None)
     "PTTrainer",
     "GaussianPrivacyFilter",

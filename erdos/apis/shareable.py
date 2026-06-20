@@ -68,30 +68,59 @@ class Shareable(dict):
 
 
 class FLContext:
-    """A simple shared scratchpad threaded through a federated run.
+    """A scoped scratchpad threaded through a federated run.
 
-    The server, controller, clients, aggregators and filters all receive the
-    same ``FLContext`` instance so they can publish and read run-scoped
-    information (current round, current client, configuration, etc.) without
-    being tightly coupled to one another.
+    Components (server, controller, clients, aggregators, filters) read and
+    write run-scoped information here without being tightly coupled. Contexts
+    form a parent/child tree: a lookup falls back to the parent chain, but a
+    write only ever touches the local scope. The runtime creates one *run*
+    scope and branches a fresh *child* scope per client task (via
+    :meth:`new_child`), so per-client state such as ``CURRENT_CLIENT`` can never
+    leak across sites or races — the prerequisite for concurrent and networked
+    execution.
     """
 
     # Well-known property keys.
     CURRENT_ROUND = "current_round"
     NUM_ROUNDS = "num_rounds"
     CURRENT_CLIENT = "current_client"
+    CURRENT_TASK = "current_task"
+    SITE_NAME = "site_name"
+    ENGINE = "__engine__"  # the run engine / event bus (set by the runtime)
 
-    def __init__(self) -> None:
+    def __init__(self, parent: Optional["FLContext"] = None) -> None:
         self._props: Dict[str, Any] = {}
+        self._parent = parent
+
+    def new_child(self) -> "FLContext":
+        """Return a fresh child scope that inherits (reads) from this one."""
+        return FLContext(parent=self)
 
     def set_prop(self, key: str, value: Any) -> None:
+        """Write ``key`` in *this* scope (never mutates the parent)."""
         self._props[key] = value
 
     def get_prop(self, key: str, default: Any = None) -> Any:
-        return self._props.get(key, default)
+        """Read ``key``, falling back to the parent chain."""
+        ctx: Optional["FLContext"] = self
+        while ctx is not None:
+            if key in ctx._props:
+                return ctx._props[key]
+            ctx = ctx._parent
+        return default
+
+    def get_engine(self) -> Any:
+        """Convenience accessor for the run engine / event bus, if present."""
+        return self.get_prop(self.ENGINE)
 
     def __contains__(self, key: str) -> bool:
-        return key in self._props
+        ctx: Optional["FLContext"] = self
+        while ctx is not None:
+            if key in ctx._props:
+                return True
+            ctx = ctx._parent
+        return False
 
     def __repr__(self) -> str:  # pragma: no cover - cosmetic
-        return f"FLContext({self._props!r})"
+        scope = "child" if self._parent is not None else "run"
+        return f"FLContext({scope}, props={list(self._props)})"
