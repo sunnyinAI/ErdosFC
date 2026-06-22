@@ -3,9 +3,9 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "erdos-fc"
+name = "erdos-fl"
 version = "0.1.0"
-description = "Erdos Federated Computing — a lightweight, extensible runtime for federated learning."
+description = "ErdosFL (Erdos Federated Learning) — a lightweight, extensible runtime for federated learning. Part of ErdosFC (Erdos Federated Computing)."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "Apache-2.0" }
@@ -40,12 +40,12 @@ secure = ["cryptography>=40.0"]
 dev = ["pytest>=7.0", "ruff>=0.1", "msgpack>=1.0"]
 
 [project.scripts]
-erdos = "erdos.cli:main"
+erdos-fl = "erdos_fl.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/sunnyinAI/ErdosComputing"
+Homepage = "https://github.com/sunnyinAI/ErdosFC"
 Author = "https://sunnyinai.github.io"
 
 [tool.setuptools.packages.find]
-include = ["erdos*"]
-exclude = ["examples*", "docs*", "web*"]
+include = ["erdos_fl*"]
+exclude = ["examples*", "docs*", "web*", "erdos-fai*"]

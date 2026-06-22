@@ -3,7 +3,7 @@
 """Tests for the framework-agnostic tensor adapter (NumPy path)."""
 import numpy as np
 
-from erdos.apis import tensor
+from erdos_fl.apis import tensor
 
 
 def test_numpy_roundtrip_preserves_dtype_and_values():

@@ -9,7 +9,7 @@ import numpy as np
 
 from conftest import numpy_clients
 
-from erdos import FedAvg, FedAvgAggregator, Simulator
+from erdos_fl import FedAvg, FedAvgAggregator, Simulator
 
 
 def test_numpy_fedavg_weighted_average():

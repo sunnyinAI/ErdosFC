@@ -3,7 +3,7 @@
 Runs offline on the EchoProvider — deterministic, no API key.
 """
 
-from erdos_platform import (
+from erdos_fai import (
     Agent,
     AgentCard,
     AutoApprover,

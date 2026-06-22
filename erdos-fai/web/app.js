@@ -1,4 +1,4 @@
-// Erdos Platform site — tiny progressive enhancements (no dependencies).
+// Erdos-FAI site — tiny progressive enhancements (no dependencies).
 
 // Reveal sections on scroll.
 const io = new IntersectionObserver(

@@ -27,8 +27,8 @@ if str(REPO_ROOT) not in sys.path:
 import torch
 from torch.utils.data import DataLoader
 
-import erdos
-from erdos import Client, FedAvg, FedAvgAggregator, GaussianPrivacyFilter, PTTrainer, Simulator
+import erdos_fl
+from erdos_fl import Client, FedAvg, FedAvgAggregator, GaussianPrivacyFilter, PTTrainer, Simulator
 
 # Local modules (same directory as this script).
 from data import load_data

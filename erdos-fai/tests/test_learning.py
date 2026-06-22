@@ -1,7 +1,7 @@
 """Learning Layer: trajectories, evaluation, and the optimizer."""
 
-from erdos_platform import Evaluator, Optimizer
-from erdos_platform.learning import Trajectory, TrajectoryStep
+from erdos_fai import Evaluator, Optimizer
+from erdos_fai.learning import Trajectory, TrajectoryStep
 
 
 def _trajectory(final="A clear, grounded final answer with enough words.") -> Trajectory:

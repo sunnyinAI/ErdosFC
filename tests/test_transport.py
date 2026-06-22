@@ -6,7 +6,7 @@ import pytest
 
 from conftest import NumpyConstTrainer, numpy_clients
 
-from erdos import Client, Executor, FLContext, Server, Shareable, TaskName
+from erdos_fl import Client, Executor, FLContext, Server, Shareable, TaskName
 
 
 class _Boom(Executor):

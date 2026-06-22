@@ -89,7 +89,7 @@ def run_demo() -> int:
     policy = PolicyEngine(Policy(name="HIPAA", version="v2.4"))
     context = RunContext(policy=policy, approver=AutoApprover(approve=True, name="dr.smith"))
 
-    print("Erdos Platform — healthcare-triage demo\n" + "=" * 44)
+    print("Erdos-FAI — healthcare-triage demo\n" + "=" * 44)
     print(f"\nEnforced policies ({policy.policy.name} {policy.policy.version}): "
           + ", ".join(policy.policy.enforced()))
 

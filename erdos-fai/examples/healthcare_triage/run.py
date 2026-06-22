@@ -1,14 +1,14 @@
 """Runnable healthcare-triage demo.
 
-    cd platform
+    cd erdos-fai
     python -m examples.healthcare_triage.run
     # or, after `pip install -e .`:
-    erdos-platform demo
+    erdos-fai demo
 
 Runs offline with the EchoProvider; set ANTHROPIC_API_KEY for live Claude calls.
 """
 
-from erdos_platform.examples_demo import run_demo
+from erdos_fai.examples_demo import run_demo
 
 
 def main() -> int:

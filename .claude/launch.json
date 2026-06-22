@@ -4,7 +4,7 @@
     {
       "name": "erdos-site",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "4321", "--directory", "platform/web"],
+      "runtimeArgs": ["-m", "http.server", "4321", "--directory", "erdos-fai/web"],
       "port": 4321
     }
   ]

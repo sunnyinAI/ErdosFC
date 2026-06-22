@@ -9,7 +9,7 @@ import pytest
 
 from conftest import NumpyConstTrainer, numpy_clients
 
-from erdos import (
+from erdos_fl import (
     Client,
     Executor,
     ExcludeVars,
@@ -133,14 +133,14 @@ def test_job_simulate_and_manifest():
 
 
 def test_cli_simulate(tmp_path, capsys):
-    from erdos.cli import main
+    from erdos_fl.cli import main
 
     job_file = tmp_path / "myjob.py"
     job_file.write_text(
         dedent(
             """
             import numpy as np
-            from erdos import Client, FedAvg, FedAvgAggregator, Job, NumpyTrainer
+            from erdos_fl import Client, FedAvg, FedAvgAggregator, Job, NumpyTrainer
 
             def build_job():
                 x = np.random.default_rng(0).normal(size=(40, 2))

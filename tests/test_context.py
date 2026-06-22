@@ -1,7 +1,7 @@
 # Copyright 2026 Sunny Gupta
 # Licensed under the Apache License, Version 2.0 (the "License").
 """Tests for scoped FLContext (parent/child)."""
-from erdos import FLContext, RunEngine
+from erdos_fl import FLContext, RunEngine
 
 
 def test_child_inherits_from_parent():

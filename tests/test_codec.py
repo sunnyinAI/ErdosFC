@@ -4,8 +4,8 @@
 import numpy as np
 import pytest
 
-from erdos import JsonCodec, Shareable
-from erdos.codec import MsgpackCodec
+from erdos_fl import JsonCodec, Shareable
+from erdos_fl.codec import MsgpackCodec
 
 CODECS = [JsonCodec]
 if MsgpackCodec is not None:

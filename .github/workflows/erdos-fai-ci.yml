@@ -1,14 +1,14 @@
-name: Erdos Platform CI
+name: Erdos-FAI CI
 
 on:
   push:
     branches: [main]
     paths:
-      - "platform/**"
-      - ".github/workflows/platform-ci.yml"
+      - "erdos-fai/**"
+      - ".github/workflows/erdos-fai-ci.yml"
   pull_request:
     paths:
-      - "platform/**"
+      - "erdos-fai/**"
   workflow_dispatch:
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
         python-version: ["3.10", "3.12"]
     defaults:
       run:
-        working-directory: platform
+        working-directory: erdos-fai
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -30,4 +30,4 @@ jobs:
       - name: Run tests
         run: pytest -q
       - name: Smoke-test the demo (offline)
-        run: erdos-platform demo
+        run: erdos-fai demo

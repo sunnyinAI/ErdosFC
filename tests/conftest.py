@@ -13,7 +13,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from erdos import Client, Executor, FLModel, ParamsType, Shareable, TaskName  # noqa: E402
+from erdos_fl import Client, Executor, FLModel, ParamsType, Shareable, TaskName  # noqa: E402
 
 
 class NumpyConstTrainer(Executor):

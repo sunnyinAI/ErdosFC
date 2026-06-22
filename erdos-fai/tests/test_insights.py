@@ -1,7 +1,7 @@
 """Insights Layer: cost pricing, tamper-evident audit, and tracing."""
 
-from erdos_platform import AuditLog, CostTracker, Tracer
-from erdos_platform.insights import price_for
+from erdos_fai import AuditLog, CostTracker, Tracer
+from erdos_fai.insights import price_for
 
 
 def test_cost_pricing_matches_table():

@@ -78,7 +78,7 @@ class EchoProvider(LLMProvider):
 class AnthropicProvider(LLMProvider):
     """Calls Claude through the official ``anthropic`` Python SDK.
 
-    Install with ``pip install 'erdos-platform[anthropic]'`` and set
+    Install with ``pip install 'erdos-fai[anthropic]'`` and set
     ``ANTHROPIC_API_KEY``. Defaults to the most capable Claude model.
     """
 
@@ -90,7 +90,7 @@ class AnthropicProvider(LLMProvider):
         except ImportError as exc:  # pragma: no cover - exercised only without the dep
             raise ImportError(
                 "AnthropicProvider needs the 'anthropic' package. "
-                "Install it with: pip install 'erdos-platform[anthropic]'"
+                "Install it with: pip install 'erdos-fai[anthropic]'"
             ) from exc
         import anthropic
 

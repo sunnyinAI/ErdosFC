@@ -25,4 +25,4 @@ First public release. See the full notes in
 - **Example** — `hello-pytorch-mnist`, a runnable end-to-end FedAvg demo with an
   automatic synthetic-data fallback when MNIST cannot be downloaded.
 
-[0.1.0]: https://github.com/sunnyinAI/ErdosComputing/releases/tag/0.1.0
+[0.1.0]: https://github.com/sunnyinAI/ErdosFC/releases/tag/0.1.0

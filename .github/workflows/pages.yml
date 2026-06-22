@@ -1,10 +1,10 @@
-name: Deploy Erdos Platform site to GitHub Pages
+name: Deploy Erdos-FAI site to GitHub Pages
 
 on:
   push:
     branches: [main]
     paths:
-      - "platform/web/**"
+      - "erdos-fai/web/**"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -29,10 +29,10 @@ jobs:
         uses: actions/checkout@v4
       - name: Configure Pages
         uses: actions/configure-pages@v5
-      - name: Upload site (platform/web)
+      - name: Upload site (erdos-fai/web)
         uses: actions/upload-pages-artifact@v3
         with:
-          path: platform/web
+          path: erdos-fai/web
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

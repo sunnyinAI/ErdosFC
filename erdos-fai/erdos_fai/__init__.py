@@ -1,4 +1,4 @@
-"""Erdos Platform — enterprise agentic technology in five layers.
+"""Erdos-FAI — enterprise agentic technology in five layers.
 
 Erdos is the agent lifecycle stack: composable agent cards (Intelligence),
 multi-agent orchestration (Orchestration), human-in-the-loop safety (Safety),
@@ -7,7 +7,7 @@ trajectory-driven improvement (Learning), and real-time observability
 
 Quick start::
 
-    from erdos_platform import AgentCard, Agent, Pipeline, Step, RunContext
+    from erdos_fai import AgentCard, Agent, Pipeline, Step, RunContext
 
     triage = Agent(AgentCard(name="Triage", system="You triage support tickets."))
     pipe = Pipeline("support", [Step("triage", triage, output_key="triage")])

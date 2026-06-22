@@ -6,7 +6,7 @@ import pytest
 
 from conftest import NumpyConstTrainer, NumpyDiffTrainer, numpy_clients
 
-from erdos import (
+from erdos_fl import (
     BestModelSelector,
     Client,
     EarlyStopping,

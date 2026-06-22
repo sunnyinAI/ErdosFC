@@ -16,7 +16,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 torch = pytest.importorskip("torch")
 from torch.utils.data import TensorDataset  # noqa: E402
 
-from erdos import (  # noqa: E402
+from erdos_fl import (  # noqa: E402
     Client,
     FedAvg,
     FedAvgAggregator,
@@ -88,7 +88,7 @@ def test_simulation_runs_and_records_history():
 
 def test_privacy_filter_changes_update():
     """The Gaussian privacy filter should perturb a client's weights."""
-    from erdos import GaussianPrivacyFilter
+    from erdos_fl import GaussianPrivacyFilter
 
     flt = GaussianPrivacyFilter(sigma=0.1, seed=0)
     ctx = FLContext()

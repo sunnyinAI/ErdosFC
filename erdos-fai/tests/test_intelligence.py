@@ -1,6 +1,6 @@
 """Intelligence Layer: agent cards compose prompt + skills + tools + memory."""
 
-from erdos_platform import AgentCard, Memory, Skill, Tool
+from erdos_fai import AgentCard, Memory, Skill, Tool
 
 
 def test_render_system_includes_all_parts():

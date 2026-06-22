@@ -2,8 +2,8 @@
 
 import pytest
 
-from erdos_platform import AutoApprover, Policy, PolicyEngine, Tool, WriteGate
-from erdos_platform.safety import GateDenied, Redactor
+from erdos_fai import AutoApprover, Policy, PolicyEngine, Tool, WriteGate
+from erdos_fai.safety import GateDenied, Redactor
 
 
 def test_redactor_finds_and_scrubs_phi():

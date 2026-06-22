@@ -2,7 +2,7 @@
 
 A tool is a typed, callable capability an agent can invoke. The ``write``
 flag marks side-effecting tools (send, persist, delete) so the Safety Layer
-can gate them behind human approval — see ``erdos_platform.safety``.
+can gate them behind human approval — see ``erdos_fai.safety``.
 """
 
 from __future__ import annotations

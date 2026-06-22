@@ -8,12 +8,12 @@ entirely on collaboration.
 
 Typical usage::
 
-    import erdos
+    import erdos_fl
 
-    clients = [erdos.Client(f"site-{i}", trainer_i) for i in range(num_sites)]
-    controller = erdos.FedAvg(num_rounds=5, initial_params=w0,
-                              aggregator=erdos.FedAvgAggregator())
-    erdos.Simulator(controller, clients).run()
+    clients = [erdos_fl.Client(f"site-{i}", trainer_i) for i in range(num_sites)]
+    controller = erdos_fl.FedAvg(num_rounds=5, initial_params=w0,
+                              aggregator=erdos_fl.FedAvgAggregator())
+    erdos_fl.Simulator(controller, clients).run()
 """
 from __future__ import annotations
 
@@ -45,7 +45,7 @@ from .widgets import BestModelSelector, EarlyStopping, ModelPersistor
 from .workflows.base import BaseModelController
 from .workflows.fedavg import FedAvg
 
-# PyTorch-dependent components are optional so that `import erdos` works even
+# PyTorch-dependent components are optional so that `import erdos_fl` works even
 # in a minimal environment without torch installed.
 try:  # pragma: no cover - depends on optional dependency
     from .executors.pt_trainer import PTTrainer

@@ -1,15 +1,15 @@
 # Copyright 2026 Sunny Gupta
 # Licensed under the Apache License, Version 2.0 (the "License").
-"""The ``erdos`` command-line interface.
+"""The ``erdos-fl`` command-line interface.
 
 Subcommands:
 
-* ``erdos simulate <job.py> [--threads N]`` — run a :class:`~erdos.job.Job`
+* ``erdos-fl simulate <job.py> [--threads N]`` — run a :class:`~erdos.job.Job`
   defined in a Python file (as a module-level ``job`` or a ``build_job()``
   factory) in the local simulator.
-* ``erdos version`` — print the installed version.
+* ``erdos-fl version`` — print the installed version.
 
-v0.6 adds ``erdos provision`` and ``erdos poc`` for networked, multi-process runs.
+v0.6 adds ``erdos-fl provision`` and ``erdos-fl poc`` for networked, multi-process runs.
 """
 from __future__ import annotations
 
@@ -73,7 +73,7 @@ def _cmd_version(_args: argparse.Namespace) -> int:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="erdos", description="Erdos Federated Computing")
+    parser = argparse.ArgumentParser(prog="erdos-fl", description="ErdosFL (Erdos Federated Learning)")
     sub = parser.add_subparsers(dest="command")
 
     p_sim = sub.add_parser("simulate", help="run a Job in the local simulator")

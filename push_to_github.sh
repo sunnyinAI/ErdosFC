@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
 #
 # Publish this repository (Erdos FC + Erdos Platform) to GitHub as
-# "ErdosComputing", push main, and point you at the GitHub Pages setup so the
+# "ErdosFC", push main, and point you at the GitHub Pages setup so the
 # Erdos Platform marketing site goes live.
 #
 # Usage:
-#   cd ~/Desktop/ErdosComputing
+#   cd ~/Desktop/ErdosFC
 #   bash push_to_github.sh
 #
 # Requires either the GitHub CLI (`gh`) authenticated, OR that you create an
-# empty repo named ErdosComputing on github.com first (see the fallback below).
+# empty repo named ErdosFC on github.com first (see the fallback below).
 
 set -euo pipefail
 
-REPO_NAME="ErdosComputing"
+REPO_NAME="ErdosFC"
 GH_USER="sunnyinAI"
 VISIBILITY="public"   # change to "private" if you prefer (Pages then needs a paid plan)
 
@@ -49,7 +49,7 @@ cat <<EOF
 
 >> Enable the Erdos Platform website (GitHub Pages):
    Repo -> Settings -> Pages -> Build and deployment -> Source: "GitHub Actions".
-   The bundled workflow (.github/workflows/pages.yml) then deploys platform/web
+   The bundled workflow (.github/workflows/pages.yml) then deploys erdos-fai/web
    on every push to main. Your site will be served at:
 
      https://$GH_USER.github.io/$REPO_NAME/

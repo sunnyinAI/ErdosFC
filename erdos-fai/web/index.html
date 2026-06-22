@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Erdos Platform — Enterprise Agentic Technology</title>
+  <title>Erdos-FAI — Enterprise Agentic Technology</title>
   <meta name="description" content="Erdos is the agent lifecycle platform: composable agent cards, multi-agent orchestration, human-in-the-loop safety, continual learning, and real-time observability — in five tightly-integrated layers." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,14 +23,14 @@
           <path d="M6 16 16 6 26 16 16 26Z M16 6 16 26 M6 16 26 16" />
         </svg>
       </span>
-      <span>Erdos<b>Platform</b></span>
+      <span>Erdos<b>-FAI</b></span>
     </a>
     <nav class="nav-links">
       <a href="#layers">Technology</a>
       <a href="#lifecycle">Lifecycle</a>
       <a href="#suite">Suite</a>
       <a href="#start">Get started</a>
-      <a class="btn btn-ghost" href="https://github.com/sunnyinAI/ErdosComputing">GitHub ↗</a>
+      <a class="btn btn-ghost" href="https://github.com/sunnyinAI/ErdosFC">GitHub ↗</a>
     </nav>
   </header>
 
@@ -38,7 +38,7 @@
   <main id="top">
     <section class="hero">
       <div class="hero-copy">
-        <p class="eyebrow">The Erdos Platform · Enterprise Agentic Technology</p>
+        <p class="eyebrow">The Erdos-FAI · Enterprise Agentic Technology</p>
         <h1>The AI platform your engineers<br><span class="accent">wish they had time to build.</span></h1>
         <p class="lede">
           Erdos is an agent lifecycle platform — build, test, deploy, reinforce, and govern AI agents
@@ -60,9 +60,9 @@
 
       <div class="hero-panel" aria-hidden="true">
         <div class="terminal">
-          <div class="term-bar"><span></span><span></span><span></span><em>erdos-platform demo</em></div>
-<pre class="term-body"><span class="c-dim">$ erdos-platform demo</span>
-Erdos Platform — healthcare-triage demo
+          <div class="term-bar"><span></span><span></span><span></span><em>erdos-fai demo</em></div>
+<pre class="term-body"><span class="c-dim">$ erdos-fai demo</span>
+Erdos-FAI — healthcare-triage demo
 <span class="c-dim">policies / HIPAA · v2.4</span>  <span class="c-ok">● enforce</span>
   PHI redaction · PII detection · write gating · audit
 
@@ -103,31 +103,31 @@ Erdos Platform — healthcare-triage demo
         <article class="layer reveal">
           <div class="layer-head"><span class="layer-no">01</span><h3>Intelligence Layer</h3></div>
           <p>Composable <b>agent cards</b> — prompt, skills, memory, MCP servers, and a typed tool library wired into one reusable, versioned object.</p>
-          <code class="layer-code">erdos_platform.intelligence</code>
+          <code class="layer-code">erdos_fai.intelligence</code>
         </article>
 
         <article class="layer reveal">
           <div class="layer-head"><span class="layer-no">02</span><h3>Orchestration Layer</h3></div>
           <p>Multi-agent <b>pipelines</b> — chain agents into steps that pass artifacts forward, with approval gates between them. Low-code by construction.</p>
-          <code class="layer-code">erdos_platform.orchestration</code>
+          <code class="layer-code">erdos_fai.orchestration</code>
         </article>
 
         <article class="layer reveal">
           <div class="layer-head"><span class="layer-no">03</span><h3>Safety Layer</h3></div>
           <p>Multi-approver <b>human-in-the-loop</b> governance, admin-configurable <b>write gates</b>, and PHI/PII-aware redaction on every input and output.</p>
-          <code class="layer-code">erdos_platform.safety</code>
+          <code class="layer-code">erdos_fai.safety</code>
         </article>
 
         <article class="layer reveal">
           <div class="layer-head"><span class="layer-no">04</span><h3>Learning Layer</h3></div>
           <p>Trajectory-driven <b>evaluation</b> and optimization, dataset synthesis, and <b>refined memories</b> written back to agents — versioned upgrades.</p>
-          <code class="layer-code">erdos_platform.learning</code>
+          <code class="layer-code">erdos_fai.learning</code>
         </article>
 
         <article class="layer reveal">
           <div class="layer-head"><span class="layer-no">05</span><h3>Insights Layer</h3></div>
           <p>Real-time <b>cost &amp; ROI</b> dashboards, agent metrics, event-replay <b>tracing</b>, and a hash-chained, tamper-evident <b>audit trail</b>.</p>
-          <code class="layer-code">erdos_platform.insights</code>
+          <code class="layer-code">erdos_fai.insights</code>
         </article>
 
         <article class="layer layer-cta reveal">
@@ -176,18 +176,18 @@ Erdos Platform — healthcare-triage demo
         <div class="start-step">
           <h4>Install</h4>
           <div class="code-block">
-            <button class="copy" data-copy="pip install -e ./platform" title="Copy">copy</button>
+            <button class="copy" data-copy="pip install -e ./erdos-fai" title="Copy">copy</button>
 <pre><code><span class="c-dim"># clone, then from the repo root</span>
-pip install -e ./platform
+pip install -e ./erdos-fai
 <span class="c-dim"># live Claude calls (optional)</span>
-pip install -e "./platform[anthropic]"</code></pre>
+pip install -e "./erdos-fai[anthropic]"</code></pre>
           </div>
         </div>
         <div class="start-step">
           <h4>Build &amp; run a pipeline</h4>
           <div class="code-block">
-            <button class="copy" data-copy='from erdos_platform import Agent, AgentCard, Pipeline, Step' title="Copy">copy</button>
-<pre><code><span class="c-key">from</span> erdos_platform <span class="c-key">import</span> Agent, AgentCard, Pipeline, Step
+            <button class="copy" data-copy='from erdos_fai import Agent, AgentCard, Pipeline, Step' title="Copy">copy</button>
+<pre><code><span class="c-key">from</span> erdos_fai <span class="c-key">import</span> Agent, AgentCard, Pipeline, Step
 
 triage = Agent(AgentCard(
     name=<span class="c-str">"Triage"</span>,
@@ -218,11 +218,11 @@ print(pipe.run(<span class="c-str">"Dashboard is down"</span>).final_output)</co
 
   <footer class="footer">
     <div class="footer-brand">
-      <span>Erdos<b>Platform</b></span>
+      <span>Erdos<b>-FAI</b></span>
       <p>Enterprise agentic technology — build, test, deploy, reinforce, and govern AI agents from one runtime.</p>
     </div>
     <div class="footer-links">
-      <a href="https://github.com/sunnyinAI/ErdosComputing">GitHub</a>
+      <a href="https://github.com/sunnyinAI/ErdosFC">GitHub</a>
       <a href="#layers">Technology</a>
       <a href="#start">Get started</a>
     </div>

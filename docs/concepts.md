@@ -12,7 +12,7 @@ The single message envelope exchanged between server and clients. It is a
 - `meta` — metadata (`num_samples`, `train_loss`, `current_round`, …).
 
 ```python
-from erdos import Shareable
+from erdos_fl import Shareable
 s = Shareable(params=state_dict, meta={"num_samples": 1280})
 s.params                 # the payload
 s.get_meta_prop("num_samples", 1)
