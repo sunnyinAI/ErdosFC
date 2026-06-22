@@ -120,6 +120,25 @@
   .product:hover .p-cta .arr{transform:translateX(4px)}
   .p-cta.fc{color:var(--g1)} .p-cta.fai{color:var(--g2)}
 
+  /* workbench / working space */
+  .repo-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:44px}
+  .repo{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;transition:.2s ease;text-decoration:none}
+  a.repo:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+  .repo-top{display:flex;align-items:center;gap:10px}
+  .repo-mark{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;background:var(--paper);border:1px solid var(--line2);color:var(--ink)}
+  .repo-mark svg{width:18px;height:18px}
+  .repo-tag{font-family:"JetBrains Mono",monospace;font-size:11.5px;font-weight:500;color:var(--g1);background:rgba(47,91,255,.07);border:1px solid var(--line2);border-radius:999px;padding:4px 11px}
+  .repo-tag.muted{color:var(--muted);background:var(--paper)}
+  .repo-arr{margin-left:auto;color:var(--muted);font-size:16px;transition:transform .18s ease}
+  a.repo:hover .repo-arr{transform:translate(2px,-2px);color:var(--ink)}
+  .repo h3{margin:16px 0 0;font-size:20px;font-weight:600;letter-spacing:-.01em}
+  .repo p{margin:9px 0 0;color:var(--ink2);font-size:14.5px;line-height:1.6}
+  .repo-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+  .repo-tags span{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--muted);background:var(--paper);border:1px solid var(--line2);border-radius:6px;padding:3px 9px}
+  .repo--more{border-style:dashed;justify-content:center;background:transparent}
+  .repo--more h3{margin:0;color:var(--ink2)}
+  .repo--more p{margin-top:8px}
+
   /* why */
   .two{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
   .why-quote{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:32px}
@@ -165,7 +184,7 @@
 
   @media(max-width:900px){
     .hero-grid{grid-template-columns:1fr;gap:40px}.figure{order:-1;max-width:320px;margin:0 auto}
-    .prod-grid{grid-template-columns:1fr}.two{grid-template-columns:1fr;gap:28px}.grid4{grid-template-columns:1fr 1fr}
+    .prod-grid{grid-template-columns:1fr}.repo-grid{grid-template-columns:1fr}.two{grid-template-columns:1fr;gap:28px}.grid4{grid-template-columns:1fr 1fr}
     .nav-links a:not(.btn){display:none}
   }
   @media(max-width:560px){.grid4{grid-template-columns:1fr}.wrap{padding:0 20px}}
@@ -290,6 +309,38 @@
       <div class="p-tags"><span>Agent cards</span><span>Orchestration</span><span>HITL safety</span><span>Audit trail</span></div>
       <span class="p-cta fai">Explore ErdosFAI <span class="arr">→</span></span>
     </a>
+  </div>
+</div></section>
+
+<section id="workbench"><div class="wrap">
+  <span class="eyebrow">Working space</span>
+  <h2>The workbench.</h2>
+  <p class="sub">Beyond the two products, this is where I work with external open-source
+  frameworks day to day — studying them, contributing back, and folding the best ideas into
+  ErdosFC and ErdosFAI. These aren't my products; they're collaborators' work I build alongside.</p>
+
+  <div class="repo-grid">
+    <a class="repo" href="https://github.com/The-AI-Alliance/tapestry" target="_blank" rel="noopener">
+      <div class="repo-top">
+        <span class="repo-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 2a9.5 9.5 0 0 0-3 18.5c.47.09.65-.2.65-.46v-1.6c-2.65.58-3.2-1.27-3.2-1.27-.43-1.09-1.05-1.38-1.05-1.38-.86-.6.07-.59.07-.59.95.07 1.45.99 1.45.99.85 1.48 2.23 1.05 2.78.8.09-.63.33-1.05.6-1.29-2.11-.24-4.33-1.08-4.33-4.8 0-1.06.38-1.93 1-2.61-.1-.24-.44-1.2.1-2.5 0 0 .82-.26 2.7 1a9.3 9.3 0 0 1 4.9 0c1.88-1.26 2.7-1 2.7-1 .54 1.3.2 2.26.1 2.5.62.68 1 1.55 1 2.6 0 3.73-2.22 4.57-4.34 4.81.34.3.64.88.64 1.78v2.64c0 .26.18.55.66.46A9.5 9.5 0 0 0 12 2z" fill="currentColor"/></svg>
+        </span>
+        <span class="repo-tag">External · The AI Alliance</span>
+        <span class="repo-arr">↗</span>
+      </div>
+      <h3>Tapestry</h3>
+      <p>A global consortium training a shared frontier model — partners then build and own
+         sovereign models aligned to their own needs. Consortium &amp; federated training at
+         frontier scale; rich ground for ideas that feed back into ErdosFC and ErdosFAI.</p>
+      <div class="repo-tags"><span>federated-learning</span><span>distributed-training</span><span>sovereign-ai</span></div>
+    </a>
+
+    <div class="repo repo--more">
+      <div class="repo-top"><span class="repo-tag muted">A growing shelf</span></div>
+      <h3>More to come</h3>
+      <p>An evolving set of open-source projects I learn from and contribute to — the best of each
+         finds its way back into the two products.</p>
+    </div>
   </div>
 </div></section>
 
