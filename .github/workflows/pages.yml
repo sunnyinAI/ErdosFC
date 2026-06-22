@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
     paths:
+      - "web-home/**"
       - "erdos-fai/web/**"
       - "web/**"
       - ".github/workflows/pages.yml"
@@ -30,11 +31,12 @@ jobs:
         uses: actions/checkout@v4
       - name: Configure Pages
         uses: actions/configure-pages@v5
-      - name: Assemble site (Erdos-FAI at /, Erdos FC at /fc/)
+      - name: Assemble site (ErdosFL at /, ErdosFC at /fc/, ErdosFAI at /fai/)
         run: |
-          mkdir -p _site/fc
-          cp -r erdos-fai/web/. _site/
-          cp -r web/. _site/fc/
+          mkdir -p _site/fc _site/fai
+          cp -r web-home/.    _site/
+          cp -r web/.         _site/fc/
+          cp -r erdos-fai/web/. _site/fai/
           touch _site/.nojekyll
       - name: Upload site
         uses: actions/upload-pages-artifact@v3

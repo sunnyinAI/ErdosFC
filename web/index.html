@@ -43,6 +43,7 @@
   .brand b{font-weight:700}
   .nav-links{display:flex;gap:30px;align-items:center;font-size:15px;color:var(--ink2);font-weight:500}
   .nav-links a:not(.btn):hover{color:var(--ink)}
+  .nav-links a.active{color:var(--ink)}
   .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 19px;border-radius:999px;
      font-weight:600;font-size:15px;transition:.18s ease;cursor:pointer;border:1px solid transparent;
      font-family:Inter,sans-serif}
@@ -181,12 +182,10 @@
 <body>
 
 <nav><div class="wrap nav">
-  <a class="brand" href="#top"><span class="mark"></span> Erdos&nbsp;<b>FC</b></a>
+  <a class="brand" href="../"><span class="mark"></span> Erdos<b>FL</b></a>
   <div class="nav-links">
-    <a href="#why">Why Erdős</a>
-    <a href="#features">Features</a>
-    <a href="#how">How it works</a>
-    <a href="#start">Quickstart</a>
+    <a href="../fc/" class="active">Federated Computing</a>
+    <a href="../fai/">Agentic Intelligence</a>
     <a class="btn ghost" href="https://github.com/sunnyinAI/ErdosFC" target="_blank" rel="noopener">GitHub <span class="arr">↗</span></a>
   </div>
 </div></nav>
@@ -194,7 +193,7 @@
 <a id="top"></a>
 <header class="hero"><div class="wrap hero-grid">
   <div>
-    <span class="pill"><span class="d"></span> v0.1.0 · open source · Apache-2.0</span>
+    <span class="pill"><span class="d"></span> ErdosFC · part of ErdosFL · Apache-2.0</span>
     <h1>One model.<br>Many collaborators.<br><span class="grad">No shared data.</span></h1>
     <p class="lede">Erdos&nbsp;FC is a lightweight, extensible runtime for federated learning.
        Train a single model across many sites — <strong>the raw data never leaves home.</strong></p>
@@ -367,16 +366,16 @@ python run_simulation.py --dp-sigma 0.02</pre>
 
 <footer><div class="wrap">
   <div class="foot">
-    <div><strong>Erdos Federated Computing</strong> — © 2026 Sunny Gupta · Apache-2.0</div>
+    <div><strong>ErdosFC</strong> — Erdos Federated Computing · part of <a href="../" style="border-bottom:1px solid var(--g1)">ErdosFL</a> · © 2026 Sunny Gupta</div>
     <div class="foot-links">
-      <a href="https://sunnyinai.github.io" target="_blank" rel="noopener">Portfolio</a>
-      <a href="https://scholar.google.com/citations?user=-I-B6DgAAAAJ&hl=en" target="_blank" rel="noopener">Scholar</a>
-      <a href="https://github.com/sunnyinAI" target="_blank" rel="noopener">GitHub</a>
+      <a href="../">ErdosFL home</a>
+      <a href="../fai/">ErdosFAI</a>
+      <a href="https://github.com/sunnyinAI/ErdosFC" target="_blank" rel="noopener">GitHub</a>
     </div>
   </div>
   <p class="disclaimer">Built by Sunny Gupta, PhD Scholar (Machine Learning), IIT Bombay.
-  Erdos&nbsp;FC is an independent, educational federated-learning runtime inspired by the
-  design patterns common to modern FL frameworks. Not affiliated with or endorsed by NVIDIA.</p>
+  ErdosFC is an independent, educational federated-learning runtime inspired by the
+  design patterns common to modern FL frameworks. Not affiliated with or endorsed by any of them.</p>
 </div></footer>
 
 <script>

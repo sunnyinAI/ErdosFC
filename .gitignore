@@ -18,6 +18,9 @@ runs/
 checkpoints/
 global_model*.pt
 
+# Site build (GitHub Pages assembles this in CI)
+_site/
+
 # Tooling
 .pytest_cache/
 .ruff_cache/

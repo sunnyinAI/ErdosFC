@@ -1,8 +1,9 @@
-<h1 align="center">ErdosFC — Erdos Federated Computing</h1>
+<h1 align="center">ErdosFL — Erdos Federated Learning</h1>
 
 <p align="center">
   <em>Many collaborators, one outcome, no shared data.</em><br>
-  An umbrella for collaborative, privacy-preserving AI — federated learning and federated agentic intelligence.
+  An open foundation for collaborative, privacy-preserving AI — with two products:
+  <b>ErdosFC</b> (federated computing) and <b>ErdosFAI</b> (federated agentic intelligence).
 </p>
 
 <p align="center">
@@ -15,12 +16,23 @@
 
 ## Two products under one roof
 
+**ErdosFL** is the umbrella. It ships two products that share one principle —
+collaborate on an outcome, never on raw data:
+
 | Product | What it is | Where |
 |---------|------------|-------|
-| **ErdosFL** — *Erdos Federated Learning* | A lightweight runtime for **federated learning** — many sites train one model without sharing data. | [`erdos_fl/`](erdos_fl/) (documented below) |
-| **Erdos-FAI** — *Erdos Federated Agentic Intelligence* | An **enterprise agentic AI** platform — composable agent cards, multi-agent orchestration, human-in-the-loop safety, continual learning, and real-time observability, in five layers. | [`erdos-fai/`](erdos-fai/) · [README](erdos-fai/README.md) |
+| **ErdosFC** — *Erdos Federated Computing* | A lightweight runtime for **federated learning** — many sites train one model without sharing data. | code in [`erdos_fl/`](erdos_fl/) (documented below) |
+| **ErdosFAI** — *Erdos Federated Agentic Intelligence* | An **enterprise agentic AI** platform — composable agent cards, multi-agent orchestration, human-in-the-loop safety, continual learning, and real-time observability, in five layers. | [`erdos-fai/`](erdos-fai/) · [README](erdos-fai/README.md) |
 
-The **Erdos-FAI** marketing site is published from [`erdos-fai/web/`](erdos-fai/web/) to GitHub Pages at **https://sunnyinai.github.io/ErdosFC/**. Try the agent platform in one command:
+### Website
+
+The unified ErdosFL site is published to GitHub Pages:
+
+- **ErdosFL** (home) — <https://sunnyinai.github.io/ErdosFC/>
+- **ErdosFC** — <https://sunnyinai.github.io/ErdosFC/fc/>
+- **ErdosFAI** — <https://sunnyinai.github.io/ErdosFC/fai/>
+
+Try the agent platform in one command:
 
 ```bash
 pip install -e ./erdos-fai
@@ -35,15 +47,17 @@ Paul Erdős published with more than 500 co-authors — his entire body of work 
 built on **collaboration**, captured today by the famous *Erdős number*. Both
 Erdos products are collaboration of exactly that kind: many parties (sites, or
 agents) work toward a shared outcome **without anyone handing over their private
-data**. ErdosFC is a small, readable home for that idea.
+data**. ErdosFL is a small, readable home for that idea.
 
 ---
 
-# ErdosFL — Erdos Federated Learning
+# ErdosFC — Erdos Federated Computing
+
+> The federated-learning runtime. Its Python package is `erdos_fl`.
 
 ## What it is
 
-ErdosFL trains machine-learning models across multiple **sites** (devices,
+ErdosFC trains machine-learning models across multiple **sites** (devices,
 hospitals, banks, phones) that keep their data local. Each round, sites train on
 their own data and send only model **updates** to a server, which **aggregates**
 them into a new global model. The framework gives you clean, swappable pieces for
@@ -129,21 +143,22 @@ reference in [`docs/concepts.md`](docs/concepts.md).
 ## Repository layout
 
 ```
-erdos_fl/              ErdosFL — the federated-learning runtime
+erdos_fl/              ErdosFC — the federated-learning runtime (package: erdos_fl)
   apis/                Shareable, FLContext, base components
   aggregators/         FedAvgAggregator
   filters/             GaussianPrivacyFilter
   workflows/           FedAvg controller
   executors/           PTTrainer (PyTorch)
   server.py  client.py  simulator.py
-erdos-fai/             Erdos-FAI — the agentic AI platform
+erdos-fai/             ErdosFAI — the agentic AI platform
   erdos_fai/           intelligence · orchestration · safety · learning · insights
   examples/  tests/  web/
-examples/              ErdosFL runnable FedAvg demo
+web-home/              ErdosFL umbrella landing page (deployed to site root)
+examples/              ErdosFC runnable FedAvg demo
 docs/                  architecture, concepts, release notes
 ```
 
-## Roadmap (ErdosFL)
+## Roadmap (ErdosFC)
 
 - Additional aggregators: FedProx, FedAdam/FedOpt, scaffold-style corrections.
 - Real network transport (gRPC) behind the existing `Server.broadcast` contract.
@@ -154,9 +169,9 @@ docs/                  architecture, concepts, release notes
 ## Citation
 
 ```bibtex
-@software{gupta_erdos_fc_2026,
+@software{gupta_erdos_fl_2026,
   author  = {Sunny Gupta},
-  title   = {ErdosFC: Erdos Federated Computing},
+  title   = {ErdosFL: Erdos Federated Learning},
   year    = {2026},
   version = {0.1.0},
   url     = {https://github.com/sunnyinAI/ErdosFC}
@@ -175,6 +190,6 @@ Federated learning · distributed deep learning · privacy-preserving AI · agen
 
 Apache License 2.0 — see [LICENSE](LICENSE). © 2026 Sunny Gupta.
 
-> ErdosFC (ErdosFL + Erdos-FAI) is an independent, educational project. It is
+> ErdosFL (ErdosFC + ErdosFAI) is an independent, educational project. It is
 > inspired by design patterns common to modern federated-learning and enterprise
 > agent platforms, and is not affiliated with or endorsed by any of them.

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ErdosFL — Erdos Federated Learning · collaborative, privacy-preserving AI</title>
+<meta name="description" content="ErdosFL (Erdos Federated Learning) is an open platform for collaborative, privacy-preserving AI. Two products: ErdosFC, a federated-learning runtime, and ErdosFAI, an agentic-intelligence platform. By Sunny Gupta.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff; --paper:#f6f5f1; --paper2:#efeee9;
+    --ink:#0a0b0d; --ink2:#3c3f47; --muted:#6c707a;
+    --line:rgba(10,11,13,.10); --line2:rgba(10,11,13,.06);
+    --code:#0c0e16; --code-ink:#dbe3ff;
+    --g1:#2f5bff; --g2:#7b5cff; --g3:#16c8b0;
+    --maxw:1180px; --radius:20px;
+    --shadow:0 1px 2px rgba(10,11,13,.04),0 18px 50px -28px rgba(10,11,13,.30);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    line-height:1.6; font-size:17px; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  a{color:inherit;text-decoration:none}
+  ::selection{background:rgba(47,91,255,.18)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  code,kbd{font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+  h1,h2,h3,.brand{font-family:"Space Grotesk",Inter,sans-serif}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.72);
+      backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--line2)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:600;font-size:18px;letter-spacing:-.02em}
+  .brand .mark{width:30px;height:30px;border-radius:9px;position:relative;overflow:hidden;
+     background:conic-gradient(from 210deg,var(--g1),var(--g3),var(--g2),var(--g1))}
+  .brand .mark::after{content:"";position:absolute;inset:6px;border-radius:5px;background:#fff}
+  .brand b{font-weight:700}
+  .nav-links{display:flex;gap:28px;align-items:center;font-size:15px;color:var(--ink2);font-weight:500}
+  .nav-links a:not(.btn):hover{color:var(--ink)}
+  .nav-links a.active{color:var(--ink)}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 19px;border-radius:999px;
+     font-weight:600;font-size:15px;transition:.18s ease;cursor:pointer;border:1px solid transparent;font-family:Inter,sans-serif}
+  .btn .arr{transition:transform .18s ease}
+  .btn:hover .arr{transform:translateX(3px)}
+  .btn.primary{background:var(--ink);color:#fff}
+  .btn.primary:hover{background:#23262e;transform:translateY(-1px);box-shadow:0 12px 24px -10px rgba(10,11,13,.5)}
+  .btn.ghost{border-color:var(--line);color:var(--ink);background:#fff}
+  .btn.ghost:hover{border-color:var(--ink);background:var(--paper)}
+
+  /* hero */
+  header.hero{position:relative;overflow:hidden;padding:72px 0 36px}
+  .hero::before{content:"";position:absolute;inset:-20% -10% auto -10%;height:600px;z-index:-1;
+     background:radial-gradient(620px 320px at 78% 4%,rgba(123,92,255,.16),transparent 62%),
+                radial-gradient(560px 320px at 8% -4%,rgba(47,91,255,.12),transparent 60%),
+                radial-gradient(420px 300px at 60% 30%,rgba(22,200,176,.10),transparent 64%)}
+  .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:56px;align-items:center}
+  .pill{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:600;color:var(--ink2);
+     background:#fff;border:1px solid var(--line);padding:7px 14px;border-radius:999px;box-shadow:var(--shadow)}
+  .pill .d{width:7px;height:7px;border-radius:50%;background:var(--g3);box-shadow:0 0 0 4px rgba(22,200,176,.18)}
+  h1{font-size:clamp(42px,6.4vw,76px);line-height:1.02;margin:24px 0 0;font-weight:600;letter-spacing:-.035em}
+  h1 .grad{background:linear-gradient(108deg,var(--g1),var(--g2) 55%,var(--g3));
+     -webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{font-size:clamp(17px,2vw,20px);color:var(--ink2);max-width:560px;margin:24px 0 0;line-height:1.55}
+  .lede strong{color:var(--ink);font-weight:600}
+  .cta{display:flex;gap:13px;flex-wrap:wrap;margin:32px 0 0}
+  .badges{display:flex;gap:9px;margin-top:24px;flex-wrap:wrap}
+  .badge{font-size:13px;font-weight:500;color:var(--ink2);background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 13px}
+
+  /* hero figure */
+  .figure{position:relative;aspect-ratio:1/1;max-width:430px;width:100%;margin-left:auto}
+  .figure .card3d{position:absolute;inset:0;border-radius:24px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);overflow:hidden}
+  .figure .card3d::before{content:"";position:absolute;inset:0;
+     background:radial-gradient(420px 280px at 70% 12%,rgba(123,92,255,.10),transparent 62%),
+                radial-gradient(360px 260px at 18% 86%,rgba(22,200,176,.10),transparent 60%)}
+  .figure svg{position:absolute;inset:0;width:100%;height:100%}
+  .pulse{transform-origin:center;animation:pulse 3.4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.45}50%{opacity:1}}
+  .edge{stroke:url(#eg);stroke-width:1.6;opacity:.55;stroke-dasharray:5 7;animation:flow 8s linear infinite}
+  @keyframes flow{to{stroke-dashoffset:-120}}
+
+  /* strip */
+  .strip{border-top:1px solid var(--line2);border-bottom:1px solid var(--line2);background:var(--bg)}
+  .strip .wrap{display:flex;flex-wrap:wrap;gap:14px 40px;align-items:center;justify-content:center;
+     padding:22px 28px;color:var(--muted);font-size:13.5px;font-weight:500}
+  .strip b{color:var(--ink);font-weight:600}
+  .strip .sep{width:5px;height:5px;border-radius:50%;background:var(--line)}
+
+  /* sections */
+  section{padding:clamp(72px,9vw,118px) 0}
+  .eyebrow{display:inline-block;color:var(--g1);font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+  h2{font-size:clamp(28px,4vw,46px);margin:14px 0 0;font-weight:600;letter-spacing:-.03em;line-height:1.05}
+  .sub{color:var(--ink2);max-width:660px;margin:18px 0 0;font-size:clamp(16px,1.6vw,18px);line-height:1.6}
+
+  /* products */
+  #products{background:var(--paper);border-top:1px solid var(--line2);border-bottom:1px solid var(--line2)}
+  .prod-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:48px}
+  .product{background:#fff;border:1px solid var(--line);border-radius:24px;padding:34px;display:flex;flex-direction:column;
+     transition:.2s ease;position:relative;overflow:hidden}
+  .product:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+  .product .glow{position:absolute;inset:0;opacity:.7;pointer-events:none}
+  .p-fc .glow{background:radial-gradient(360px 220px at 84% -8%,rgba(47,91,255,.12),transparent 60%)}
+  .p-fai .glow{background:radial-gradient(360px 220px at 84% -8%,rgba(123,92,255,.13),transparent 60%)}
+  .product>*{position:relative}
+  .p-top{display:flex;align-items:center;justify-content:space-between;gap:14px}
+  .p-no{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--muted);letter-spacing:.04em}
+  .p-vis{width:64px;height:64px}
+  .p-name{display:flex;align-items:baseline;gap:10px;margin-top:22px;flex-wrap:wrap}
+  .p-name h3{font-size:26px;font-weight:600;letter-spacing:-.02em;margin:0}
+  .p-name .full{color:var(--muted);font-size:14px;font-weight:500}
+  .product p{color:var(--ink2);font-size:15.5px;line-height:1.6;margin:14px 0 0}
+  .p-tags{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0}
+  .p-tags span{font-size:12.5px;font-weight:500;color:var(--ink2);background:var(--paper);border:1px solid var(--line2);border-radius:999px;padding:5px 12px}
+  .p-cta{margin-top:26px;display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;color:var(--ink)}
+  .p-cta .arr{transition:transform .18s ease}
+  .product:hover .p-cta .arr{transform:translateX(4px)}
+  .p-cta.fc{color:var(--g1)} .p-cta.fai{color:var(--g2)}
+
+  /* why */
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+  .why-quote{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:32px}
+  .why-quote blockquote{margin:0;font-family:"Space Grotesk",sans-serif;font-size:23px;line-height:1.3;letter-spacing:-.02em;font-weight:500}
+  .why-quote .bar{width:46px;height:4px;border-radius:4px;margin-bottom:20px;background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+  .why-quote p{margin:18px 0 0;color:var(--ink2);font-size:15.5px;line-height:1.6}
+  em{font-style:italic}
+
+  /* principles */
+  #principles{background:var(--paper);border-top:1px solid var(--line2);border-bottom:1px solid var(--line2)}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:48px}
+  .pcard{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;transition:.2s}
+  .pcard:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+  .pcard .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;margin-bottom:14px;font-size:19px;
+     background:linear-gradient(160deg,rgba(47,91,255,.10),rgba(123,92,255,.10));border:1px solid var(--line2)}
+  .pcard h3{margin:0 0 6px;font-size:16.5px;font-weight:600}
+  .pcard p{margin:0;color:var(--ink2);font-size:14px;line-height:1.55}
+
+  /* CTA band */
+  .band{position:relative;overflow:hidden;background:var(--ink);color:#fff;border-radius:28px;padding:clamp(44px,6vw,72px);text-align:center}
+  .band::before{content:"";position:absolute;inset:0;
+     background:radial-gradient(600px 300px at 20% 0%,rgba(123,92,255,.30),transparent 60%),
+                radial-gradient(560px 320px at 90% 110%,rgba(22,200,176,.22),transparent 60%)}
+  .band>*{position:relative}
+  .band h2{color:#fff}
+  .band .sub{color:rgba(255,255,255,.72);margin-left:auto;margin-right:auto}
+  .band .cta{justify-content:center;margin-top:30px}
+  .band .btn.ghost{background:transparent;border-color:rgba(255,255,255,.28);color:#fff}
+  .band .btn.ghost:hover{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.5)}
+  .band .btn.primary{background:#fff;color:var(--ink)}
+  .band .btn.primary:hover{background:#f0f0f0}
+
+  /* footer */
+  footer{border-top:1px solid var(--line2);padding:56px 0 40px;color:var(--ink2);font-size:14.5px}
+  .foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-start}
+  .foot .fb b{font-family:"Space Grotesk",sans-serif;font-weight:700}
+  .foot .fb p{margin:8px 0 0;color:var(--ink2);max-width:380px;font-size:14px}
+  .foot-cols{display:flex;gap:54px;flex-wrap:wrap}
+  .foot-col h4{margin:0 0 12px;font-size:13px;letter-spacing:.04em;color:var(--muted);font-weight:600;text-transform:uppercase}
+  .foot-col a{display:block;color:var(--ink);font-weight:500;margin-bottom:9px}
+  .foot-col a:hover{color:var(--g1)}
+  .disclaimer{font-size:12.5px;color:var(--muted);margin-top:30px;max-width:720px;line-height:1.6;border-top:1px solid var(--line2);padding-top:22px}
+
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr;gap:40px}.figure{order:-1;max-width:320px;margin:0 auto}
+    .prod-grid{grid-template-columns:1fr}.two{grid-template-columns:1fr;gap:28px}.grid4{grid-template-columns:1fr 1fr}
+    .nav-links a:not(.btn){display:none}
+  }
+  @media(max-width:560px){.grid4{grid-template-columns:1fr}.wrap{padding:0 20px}}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap nav">
+  <a class="brand" href="./"><span class="mark"></span> Erdos<b>FL</b></a>
+  <div class="nav-links">
+    <a href="fc/">Federated Computing</a>
+    <a href="fai/">Agentic Intelligence</a>
+    <a class="btn ghost" href="https://github.com/sunnyinAI/ErdosFC" target="_blank" rel="noopener">GitHub <span class="arr">↗</span></a>
+  </div>
+</div></nav>
+
+<a id="top"></a>
+<header class="hero"><div class="wrap hero-grid">
+  <div>
+    <span class="pill"><span class="d"></span> ErdosFL · Erdos Federated Learning</span>
+    <h1>Collaborate on intelligence.<br><span class="grad">Keep the data home.</span></h1>
+    <p class="lede"><strong>ErdosFL</strong> is an open foundation for collaborative, privacy-preserving AI.
+       Two products, one principle: many parties build a shared outcome together — and
+       <strong>no one hands over their data.</strong></p>
+    <div class="cta">
+      <a class="btn primary" href="#products">Explore the products <span class="arr">→</span></a>
+      <a class="btn ghost" href="https://github.com/sunnyinAI/ErdosFC" target="_blank" rel="noopener">View on GitHub <span class="arr">↗</span></a>
+    </div>
+    <div class="badges">
+      <span class="badge">Open source · Apache-2.0</span>
+      <span class="badge">Privacy-first</span>
+      <span class="badge">Python 3.10+</span>
+      <span class="badge">Framework-agnostic</span>
+    </div>
+  </div>
+
+  <div class="figure" aria-hidden="true">
+    <div class="card3d"></div>
+    <svg viewBox="0 0 400 400">
+      <defs>
+        <linearGradient id="eg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#16c8b0"/><stop offset="1" stop-color="#7b5cff"/>
+        </linearGradient>
+        <radialGradient id="srv" cx="50%" cy="40%" r="60%">
+          <stop offset="0" stop-color="#5b7cff"/><stop offset="1" stop-color="#2f5bff"/>
+        </radialGradient>
+      </defs>
+      <g class="edges">
+        <line class="edge" x1="200" y1="200" x2="200" y2="64"/>
+        <line class="edge" x1="200" y1="200" x2="318" y2="132"/>
+        <line class="edge" x1="200" y1="200" x2="318" y2="268"/>
+        <line class="edge" x1="200" y1="200" x2="200" y2="336"/>
+        <line class="edge" x1="200" y1="200" x2="82"  y2="268"/>
+        <line class="edge" x1="200" y1="200" x2="82"  y2="132"/>
+      </g>
+      <g>
+        <circle class="pulse" cx="200" cy="64"  r="15" fill="#16c8b0"/>
+        <circle class="pulse" cx="318" cy="132" r="15" fill="#2f5bff" style="animation-delay:.5s"/>
+        <circle class="pulse" cx="318" cy="268" r="15" fill="#7b5cff" style="animation-delay:1s"/>
+        <circle class="pulse" cx="200" cy="336" r="15" fill="#16c8b0" style="animation-delay:1.5s"/>
+        <circle class="pulse" cx="82"  cy="268" r="15" fill="#2f5bff" style="animation-delay:2s"/>
+        <circle class="pulse" cx="82"  cy="132" r="15" fill="#7b5cff" style="animation-delay:2.5s"/>
+      </g>
+      <circle cx="200" cy="200" r="30" fill="url(#srv)"/>
+      <circle cx="200" cy="200" r="44" fill="none" stroke="#2f5bff" stroke-opacity=".25"/>
+      <text x="200" y="205" text-anchor="middle" font-size="12" fill="#fff" font-family="Space Grotesk,Inter" font-weight="600">ErdosFL</text>
+    </svg>
+  </div>
+</div></header>
+
+<div class="strip"><div class="wrap">
+  <span><b>Federated</b> by design</span><span class="sep"></span>
+  <span><b>Privacy</b> on the path</span><span class="sep"></span>
+  <span><b>Audit-ready</b> runtimes</span><span class="sep"></span>
+  <span><b>Dependency-light</b> core</span><span class="sep"></span>
+  <span><b>Runs offline</b>, no key</span>
+</div></div>
+
+<section id="products"><div class="wrap">
+  <span class="eyebrow">The platform</span>
+  <h2>Two products. One foundation.</h2>
+  <p class="sub">ErdosFL spans the federated stack — from training a shared model across private
+  data, to running governed multi-agent systems. Each product is open source and reads in an afternoon.</p>
+
+  <div class="prod-grid">
+    <a class="product p-fc" href="fc/">
+      <div class="glow"></div>
+      <div class="p-top">
+        <span class="p-no">PRODUCT 01</span>
+        <svg class="p-vis" viewBox="0 0 64 64" aria-hidden="true">
+          <g stroke="#2f5bff" stroke-width="1.4" opacity=".5">
+            <line x1="32" y1="32" x2="32" y2="10"/><line x1="32" y1="32" x2="52" y2="22"/>
+            <line x1="32" y1="32" x2="52" y2="44"/><line x1="32" y1="32" x2="12" y2="44"/><line x1="32" y1="32" x2="12" y2="22"/>
+          </g>
+          <circle cx="32" cy="10" r="4" fill="#16c8b0"/><circle cx="52" cy="22" r="4" fill="#2f5bff"/>
+          <circle cx="52" cy="44" r="4" fill="#7b5cff"/><circle cx="12" cy="44" r="4" fill="#2f5bff"/><circle cx="12" cy="22" r="4" fill="#7b5cff"/>
+          <circle cx="32" cy="32" r="7" fill="#2f5bff"/>
+        </svg>
+      </div>
+      <div class="p-name"><h3>ErdosFC</h3><span class="full">Erdos Federated Computing</span></div>
+      <p>A lightweight, extensible runtime for <strong>federated learning</strong>. Many collaborators
+         train one model — sites send only updates, and the raw data never leaves home.</p>
+      <div class="p-tags"><span>FedAvg</span><span>Privacy filters</span><span>One-process simulator</span><span>PyTorch</span></div>
+      <span class="p-cta fc">Explore ErdosFC <span class="arr">→</span></span>
+    </a>
+
+    <a class="product p-fai" href="fai/">
+      <div class="glow"></div>
+      <div class="p-top">
+        <span class="p-no">PRODUCT 02</span>
+        <svg class="p-vis" viewBox="0 0 64 64" aria-hidden="true">
+          <rect x="10" y="12" width="44" height="9" rx="3" fill="none" stroke="#7b5cff" stroke-width="1.6"/>
+          <rect x="10" y="27" width="44" height="9" rx="3" fill="none" stroke="#2f5bff" stroke-width="1.6"/>
+          <rect x="10" y="42" width="44" height="9" rx="3" fill="#7b5cff" opacity=".9"/>
+          <circle cx="18" cy="46.5" r="2" fill="#fff"/><circle cx="26" cy="46.5" r="2" fill="#fff"/>
+        </svg>
+      </div>
+      <div class="p-name"><h3>ErdosFAI</h3><span class="full">Erdos Federated Agentic Intelligence</span></div>
+      <p>An <strong>agent lifecycle platform</strong> — build, test, deploy, reinforce, and govern AI
+         agents from one observable, audited runtime. Five tightly-integrated layers.</p>
+      <div class="p-tags"><span>Agent cards</span><span>Orchestration</span><span>HITL safety</span><span>Audit trail</span></div>
+      <span class="p-cta fai">Explore ErdosFAI <span class="arr">→</span></span>
+    </a>
+  </div>
+</div></section>
+
+<section id="why"><div class="wrap two">
+  <div>
+    <span class="eyebrow">Why "Erdős"</span>
+    <h2>Collaboration without sharing.</h2>
+    <p class="sub">Paul Erdős published with more than 500 co-authors — his whole body of work was
+    built on collaboration, immortalized by the <em>Erdős number</em>. Both ErdosFL products are
+    collaboration of exactly that kind: many parties — sites, or agents — work toward a shared
+    outcome while their private data stays home. ErdosFL makes that pattern small enough to read
+    and easy to extend.</p>
+  </div>
+  <div class="why-quote">
+    <div class="bar"></div>
+    <blockquote>"Many minds, one result — and nobody hands over their notebook."</blockquote>
+    <p>Whether the collaborators are hospitals training a model or agents running a governed
+    pipeline, the contract is the same: share <strong>outcomes</strong>, not raw data.</p>
+  </div>
+</div></section>
+
+<section id="principles"><div class="wrap">
+  <span class="eyebrow">What ties them together</span>
+  <h2>One set of principles.</h2>
+  <p class="sub">ErdosFC and ErdosFAI are different runtimes, but they share a spine.</p>
+  <div class="grid4">
+    <div class="pcard"><div class="ic">🔒</div><h3>Privacy-first</h3><p>Data and raw weights stay local; only updates or outcomes cross the wire.</p></div>
+    <div class="pcard"><div class="ic">🧩</div><h3>Composable</h3><p>Small, swappable abstract base classes — bring your own aggregator, model, or agent.</p></div>
+    <div class="pcard"><div class="ic">📖</div><h3>Readable</h3><p>Dependency-light cores you can read in an afternoon and use as a research scaffold.</p></div>
+    <div class="pcard"><div class="ic">🛡️</div><h3>Audit-ready</h3><p>Governed, observable runtimes — built to be inspected, traced, and trusted.</p></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap"><div class="band">
+  <h2>Build on ErdosFL.</h2>
+  <p class="sub">Pick a product, clone the repo, and run it offline in one command — no keys, no data leaving home.</p>
+  <div class="cta">
+    <a class="btn primary" href="fc/">Federated Computing <span class="arr">→</span></a>
+    <a class="btn ghost" href="fai/">Agentic Intelligence <span class="arr">→</span></a>
+  </div>
+</div></div></section>
+
+<footer><div class="wrap">
+  <div class="foot">
+    <div class="fb">
+      <span class="brand"><span class="mark"></span> Erdos<b>FL</b></span>
+      <p>Erdos Federated Learning — an open foundation for collaborative, privacy-preserving AI.</p>
+    </div>
+    <div class="foot-cols">
+      <div class="foot-col">
+        <h4>Products</h4>
+        <a href="fc/">ErdosFC — Federated Computing</a>
+        <a href="fai/">ErdosFAI — Agentic Intelligence</a>
+      </div>
+      <div class="foot-col">
+        <h4>Project</h4>
+        <a href="https://github.com/sunnyinAI/ErdosFC" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://sunnyinai.github.io" target="_blank" rel="noopener">Portfolio</a>
+        <a href="https://scholar.google.com/citations?user=-I-B6DgAAAAJ&hl=en" target="_blank" rel="noopener">Scholar</a>
+      </div>
+    </div>
+  </div>
+  <p class="disclaimer">© 2026 Sunny Gupta · Apache-2.0. Built by Sunny Gupta, PhD Scholar (Machine Learning), IIT Bombay.
+  ErdosFL is an independent, educational project inspired by the design patterns common to modern federated-learning
+  and enterprise agent platforms. Not affiliated with or endorsed by any of them.</p>
+</div></footer>
+
+</body>
+</html>
