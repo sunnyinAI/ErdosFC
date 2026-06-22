@@ -165,6 +165,8 @@ docs/                  architecture, concepts, release notes
 - Secure aggregation and a moments-accountant DP path.
 - Provisioning: TLS certificates and per-site "startup kits" for cross-org runs.
 - TensorFlow / JAX executors alongside `PTTrainer`.
+- Governed aggregation: a coordinator policy with a quality floor and an anti-capture cap, so low-value updates are filtered and no single participant dominates the shared model.
+- Sovereign model artifacts: from one governed base model, each participant derives and owns a variant aligned to its own corpus.
 
 ## Citation
 
