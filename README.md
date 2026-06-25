@@ -22,7 +22,7 @@ collaborate on an outcome, never on raw data:
 | Product | What it is | Where |
 |---------|------------|-------|
 | **ErdosFC** — *Erdos Federated Computing* | A lightweight runtime for **federated learning** — many sites train one model without sharing data. | code in [`erdos_fl/`](erdos_fl/) (documented below) |
-| **ErdosFAI** — *Erdos Federated Agentic Intelligence* | An **enterprise agentic AI** platform — composable agent cards, multi-agent orchestration, human-in-the-loop safety, continual learning, and real-time observability, in five layers. | [`erdos-fai/`](erdos-fai/) · [README](erdos-fai/README.md) |
+| **ErdosFAI** — *Erdos Federated Agentic Intelligence* | An **enterprise agentic AI** platform — composable agent cards, multi-agent orchestration, human-in-the-loop safety, continual learning, real-time observability, and a connected **execution layer** (60+ connectors, governed workflow templates, risk scoring, task routing, RBAC, dry-run), in six layers. | [`erdos-fai/`](erdos-fai/) · [README](erdos-fai/README.md) |
 
 ### Website
 

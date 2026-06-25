@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ErdosFAI — Erdos Federated Agentic Intelligence</title>
-  <meta name="description" content="ErdosFAI (Erdos Federated Agentic Intelligence) is the agent lifecycle platform from ErdosFL: composable agent cards, multi-agent orchestration, human-in-the-loop safety, continual learning, and real-time observability — in five tightly-integrated layers." />
+  <title>ErdosFAI — The Agent Lifecycle & Execution Platform</title>
+  <meta name="description" content="ErdosFAI (Erdos Federated Agentic Intelligence) builds, tests, governs, and executes AI agents across your real systems. Six layers: composable agent cards, multi-agent orchestration, human-in-the-loop safety, continual learning, real-time observability — and an execution layer with 60+ connectors, governed workflow templates, risk scoring, task routing, SLA escalation, and RBAC." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -20,8 +20,11 @@
       <span>Erdos<b>FL</b></span>
     </a>
     <nav class="nav-links">
-      <a href="../fc/">Federated Computing</a>
-      <a href="./" class="active">Agentic Intelligence</a>
+      <a href="#how">How it works</a>
+      <a href="#layers">Platform</a>
+      <a href="#integrations">Integrations</a>
+      <a href="#usecases">Use cases</a>
+      <a href="#pricing">Pricing</a>
       <a class="btn btn-ghost" href="https://github.com/sunnyinAI/ErdosFC">GitHub ↗</a>
     </nav>
   </header>
@@ -31,19 +34,19 @@
     <section class="hero">
       <div class="hero-copy">
         <p class="eyebrow">ErdosFAI · part of ErdosFL · Erdos Federated Agentic Intelligence</p>
-        <h1>The AI platform your engineers<br><span class="accent">wish they had time to build.</span></h1>
+        <h1>The execution layer for<br><span class="accent">governed AI agents.</span></h1>
         <p class="lede">
-          ErdosFAI is an agent lifecycle platform — build, test, deploy, reinforce, and govern AI agents
-          from one observable, audited runtime. Five tightly-integrated layers covering composable
-          agent cards, multi-agent orchestration, human-in-the-loop safety, continual improvement,
-          and real-time observability.
+          ErdosFAI builds, tests, reinforces, and governs AI agents — then connects them to the
+          systems you already run and drives real work to follow-through. One observable, audited
+          runtime: composable agent cards, multi-agent pipelines, human-in-the-loop safety,
+          continual learning, real-time insights, and a connected execution layer.
         </p>
         <div class="hero-cta">
-          <a class="btn btn-primary" href="#layers">Explore the stack</a>
+          <a class="btn btn-primary" href="#how">See how it works</a>
           <a class="btn btn-ghost" href="#start">Quickstart</a>
         </div>
         <ul class="badges">
-          <li>Dependency-light core</li>
+          <li>60+ connectors</li>
           <li>Runs offline, no key</li>
           <li>Audit-ready</li>
           <li>Apache-2.0</li>
@@ -52,22 +55,59 @@
 
       <div class="hero-panel" aria-hidden="true">
         <div class="terminal">
-          <div class="term-bar"><span></span><span></span><span></span><em>erdos-fai demo</em></div>
-<pre class="term-body"><span class="c-dim">$ erdos-fai demo</span>
-Erdos-FAI — healthcare-triage demo
-<span class="c-dim">policies / HIPAA · v2.4</span>  <span class="c-ok">● enforce</span>
-  PHI redaction · PII detection · write gating · audit
+          <div class="term-bar"><span></span><span></span><span></span><em>erdos-fai execute</em></div>
+<pre class="term-body"><span class="c-dim">$ erdos-fai execute</span>
+Execution Layer · inpatient-deterioration
+systems  Epic · FHIR · LIS · Twilio · PagerDuty  <span class="c-ok">● connected</span>
 
-[intake]   → structured fields extracted
-[triage]   → acuity 2  (chest pain + dyspnea)
-[referral] <span class="c-warn">⚠ approval required</span> → <span class="c-ok">dr.smith ✓</span>
+<span class="c-dim">[dry-run] </span> 3 writes gated · 2 notifications planned
+<span class="c-dim">[risk]    </span> <span class="c-warn">0.81 high  ⚠ breach (≥0.70)</span>
+<span class="c-dim">[approval]</span> high-risk → <span class="c-ok">dr.emily ✓</span>  <span class="c-dim">(rbac)</span>
+<span class="c-dim">[route]   </span> task act_5fbc → charge_nurse
+<span class="c-dim">[escalate]</span> <span class="c-warn">L2 rapid_response</span>  <span class="c-dim">(SLA 10m)</span>
 
 <span class="c-dim">── Insights ──────────────────────────</span>
- total cost           <span class="c-ok">$0.0142</span>
- safety interventions <span class="c-warn">4</span>
- approvals            1
- dollars saved        <span class="c-ok">$31.25</span>
- audit chain          <span class="c-ok">verified ✓</span></pre>
+ audit records   8
+ audit chain     <span class="c-ok">verified ✓</span></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats" aria-label="Platform at a glance">
+      <div class="stat"><b>6</b><span>tightly-integrated layers</span></div>
+      <div class="stat"><b>60+</b><span>pre-built connectors</span></div>
+      <div class="stat"><b>8</b><span>governed workflow templates</span></div>
+      <div class="stat"><b>100%</b><span>tamper-evident audit chain</span></div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how" class="how">
+      <p class="section-kicker">How it works</p>
+      <h2>From fragmented systems to governed execution</h2>
+      <p class="section-sub">Three steps to put agents to work across the tools you already run — without
+        replacing any of them.</p>
+      <div class="how-grid">
+        <div class="how-step reveal">
+          <span class="how-no">01</span>
+          <h3>Connect existing systems</h3>
+          <p>Wire in EHRs, labs, ERPs, scheduling, and messaging with 60+ pre-built connectors.
+            Auth lives in your vault — connectors only declare capability and whether they can write.</p>
+          <code class="layer-code">erdos_fai.execution.connectors</code>
+        </div>
+        <div class="how-step reveal">
+          <span class="how-no">02</span>
+          <h3>Configure governed workflows</h3>
+          <p>Start from a healthcare- or operations-native template — or compose your own. Each declares
+            triggers, risk thresholds, SLA & escalation ladders, and which actions require approval.</p>
+          <code class="layer-code">erdos_fai.execution.templates</code>
+        </div>
+        <div class="how-step reveal">
+          <span class="how-no">03</span>
+          <h3>Execute with full control</h3>
+          <p>Dry-run first, then go live: score risk, gate every write behind RBAC approval, route tasks,
+            escalate on breach, and capture it all in a hash-chained audit trail.</p>
+          <code class="layer-code">erdos_fai.execution.routing</code>
         </div>
       </div>
     </section>
@@ -81,14 +121,14 @@ Erdos-FAI — healthcare-triage demo
         <div class="stage" data-stage="test">    <span class="stage-no">02</span><h3>Test</h3><p>Score agents against rigorous evaluation suites before they ship.</p><span class="stage-tag tag-red">RED</span></div>
         <div class="stage" data-stage="deploy">  <span class="stage-no">03</span><h3>Deploy</h3><p>Run multi-agent pipelines with human-in-the-loop gates.</p><span class="stage-tag tag-blue">BLUE</span></div>
         <div class="stage" data-stage="reinforce"><span class="stage-no">04</span><h3>Reinforce</h3><p>Learn from every trajectory — agents that improve release over release.</p><span class="stage-tag tag-green">GREEN</span></div>
-        <div class="stage" data-stage="govern">  <span class="stage-no">05</span><h3>Govern</h3><p>Policy enforcement, cost, and a tamper-evident audit trail.</p><span class="stage-tag tag-green">GREEN</span></div>
+        <div class="stage" data-stage="govern">  <span class="stage-no">05</span><h3>Execute & Govern</h3><p>Drive work across connected systems with policy, cost, and a tamper-evident audit trail.</p><span class="stage-tag tag-green">GREEN</span></div>
       </div>
     </section>
 
     <!-- LAYERS -->
     <section id="layers" class="layers">
       <p class="section-kicker">Enterprise agentic technology</p>
-      <h2>Five tightly-integrated layers</h2>
+      <h2>Six tightly-integrated layers</h2>
       <p class="section-sub">Each layer is a real Python package. The core is standard-library only, so it reads, runs, and ships anywhere.</p>
 
       <div class="layer-grid">
@@ -122,11 +162,102 @@ Erdos-FAI — healthcare-triage demo
           <code class="layer-code">erdos_fai.insights</code>
         </article>
 
-        <article class="layer layer-cta reveal">
-          <h3>Build agents.<br>Keep control.</h3>
-          <p>Don't hand your agentic future to a single model provider — own the lifecycle.</p>
-          <a class="btn btn-primary" href="#start">Get started →</a>
+        <article class="layer layer-accent reveal">
+          <div class="layer-head"><span class="layer-no">06</span><h3>Execution Layer</h3><span class="pill-new">NEW</span></div>
+          <p>Connect real systems and drive governed workflows: <b>60+ connectors</b>, workflow <b>templates</b>, <b>risk scoring</b>, task <b>routing</b> with SLA escalation, and <b>RBAC</b> — with dry-run simulation.</p>
+          <code class="layer-code">erdos_fai.execution</code>
         </article>
+      </div>
+
+      <div class="layer-cta-band reveal">
+        <div>
+          <h3>Build agents. Keep control.</h3>
+          <p>Don't hand your agentic future to a single model provider — own the lifecycle, end to end.</p>
+        </div>
+        <a class="btn btn-primary" href="#start">Get started →</a>
+      </div>
+    </section>
+
+    <!-- INTEGRATIONS -->
+    <section id="integrations" class="integrations">
+      <p class="section-kicker">Integrations</p>
+      <h2>60+ pre-built connectors</h2>
+      <p class="section-sub">Connect the systems you already run — across 13 categories — without ripping anything out.
+        Every connector declares whether it can <b>write</b>, so the Safety Layer can gate side effects.</p>
+      <div class="conn-grid">
+        <div class="conn-cat reveal"><h4>EHR</h4><div class="chips"><span>Epic</span><span>Oracle Health</span><span>MEDITECH</span><span>athenahealth</span><span>Veradigm</span></div></div>
+        <div class="conn-cat reveal"><h4>Interoperability</h4><div class="chips"><span>FHIR R4</span><span>HL7 v2</span><span>SMART on FHIR</span><span>Redox</span><span>C-CDA</span></div></div>
+        <div class="conn-cat reveal"><h4>Labs &amp; Diagnostics</h4><div class="chips"><span>Labcorp</span><span>Quest</span><span>LIS</span><span>PACS / DICOM</span><span>RIS</span></div></div>
+        <div class="conn-cat reveal"><h4>Pharmacy</h4><div class="chips"><span>Surescripts</span><span>RxNorm</span></div></div>
+        <div class="conn-cat reveal"><h4>Scheduling &amp; Capacity</h4><div class="chips"><span>Epic Cadence</span><span>QGenda</span><span>Outlook Calendar</span><span>Teamup</span></div></div>
+        <div class="conn-cat reveal"><h4>Messaging &amp; Notifications</h4><div class="chips"><span>Twilio SMS</span><span>WhatsApp</span><span>Slack</span><span>Teams</span><span>PagerDuty</span></div></div>
+        <div class="conn-cat reveal"><h4>ERP &amp; Finance</h4><div class="chips"><span>SAP</span><span>Oracle ERP</span><span>Workday</span><span>NetSuite</span><span>Coupa</span></div></div>
+        <div class="conn-cat reveal"><h4>Payments &amp; Claims</h4><div class="chips"><span>Stripe</span><span>Change Healthcare</span><span>Availity</span><span>Waystar</span></div></div>
+        <div class="conn-cat reveal"><h4>Identity &amp; Access</h4><div class="chips"><span>Okta</span><span>Entra ID</span><span>Auth0</span></div></div>
+        <div class="conn-cat reveal"><h4>Data &amp; Storage</h4><div class="chips"><span>Snowflake</span><span>Postgres</span><span>S3</span><span>SFTP</span></div></div>
+        <div class="conn-cat reveal"><h4>Analytics &amp; BI</h4><div class="chips"><span>Tableau</span><span>Power BI</span><span>Looker</span></div></div>
+        <div class="conn-cat reveal"><h4>Forms &amp; Generic</h4><div class="chips"><span>DocuSign</span><span>Typeform</span><span>REST / Webhook</span><span>MCP</span><span>GraphQL</span></div></div>
+      </div>
+      <p class="start-note">List the full catalog any time with <code>erdos-fai connectors</code>.</p>
+    </section>
+
+    <!-- USE CASES -->
+    <section id="usecases" class="usecases">
+      <p class="section-kicker">Use cases</p>
+      <h2>One layer across clinical and operational workflows</h2>
+      <p class="section-sub">Ship-ready templates that turn signals into governed follow-through. Browse them with
+        <code>erdos-fai templates</code>.</p>
+
+      <div class="uc-group reveal">
+        <h3 class="uc-head"><span class="dot dot-blue"></span> Clinical</h3>
+        <div class="uc-grid">
+          <article class="uc-card">
+            <h4>Inpatient Deterioration &amp; Early Escalation</h4>
+            <p>Watch vitals and labs for deterioration trends and escalate to rapid response before a code.</p>
+            <p class="uc-meta">trigger: new vitals/lab · risk ≥ 0.70 · escalates via SMS &amp; PagerDuty</p>
+          </article>
+          <article class="uc-card">
+            <h4>Discharge Navigation</h4>
+            <p>Surface discharge barriers and route prioritized remediation tasks to nurses and case managers.</p>
+            <p class="uc-meta">trigger: discharge order · risk ≥ 0.50 · routes to case manager</p>
+          </article>
+          <article class="uc-card">
+            <h4>Critical Results Management</h4>
+            <p>Track critical lab and imaging results to closed-loop acknowledgement with audit.</p>
+            <p class="uc-meta">trigger: critical value · risk ≥ 0.80 · read-back to provider</p>
+          </article>
+          <article class="uc-card">
+            <h4>Care Transitions &amp; Follow-up</h4>
+            <p>Assess discharge readiness and coordinate post-discharge appointments and med reconciliation.</p>
+            <p class="uc-meta">trigger: transition flag · books follow-up · reconciles meds</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="uc-group reveal">
+        <h3 class="uc-head"><span class="dot dot-green"></span> Operational</h3>
+        <div class="uc-grid">
+          <article class="uc-card">
+            <h4>Transfer &amp; Capacity Planning</h4>
+            <p>Surface expected capacity from admissions and discharges to plan transfers ahead of demand.</p>
+            <p class="uc-meta">trigger: hourly recompute · forecasts net beds · reserves capacity</p>
+          </article>
+          <article class="uc-card">
+            <h4>Hospital Capacity &amp; Patient Flow</h4>
+            <p>Optimize staff allocation against predicted census across ER, OR, and inpatient units.</p>
+            <p class="uc-meta">trigger: census change · proposes staffing · publishes flow dashboard</p>
+          </article>
+          <article class="uc-card">
+            <h4>Procurement Approval Routing</h4>
+            <p>Route cross-system purchase requests through policy-based, multi-level approvals.</p>
+            <p class="uc-meta">trigger: purchase request · risk ≥ 0.65 · approval by amount tier</p>
+          </article>
+          <article class="uc-card">
+            <h4>Insurance Utilization Review</h4>
+            <p>Optimize utilization-review creation and prior-authorization for case managers.</p>
+            <p class="uc-meta">trigger: reviewable service · submits prior auth · creates review task</p>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -135,7 +266,7 @@ Erdos-FAI — healthcare-triage demo
       <p class="section-kicker">How it fits together</p>
       <h2>One governed runtime, end to end</h2>
       <div class="arch-diagram">
-        <svg viewBox="0 0 760 300" role="img" aria-label="Erdos architecture: safety and insights wrap orchestration of intelligence agents, feeding the learning loop.">
+        <svg viewBox="0 0 760 360" role="img" aria-label="Erdos architecture: safety and insights wrap orchestration of intelligence agents; the execution layer connects to external systems; everything feeds the learning loop.">
           <defs>
             <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
               <path d="M0 0 L10 5 L0 10 z" fill="#2f5bff"/>
@@ -156,6 +287,10 @@ Erdos-FAI — healthcare-triage demo
           <path d="M242 151 L305 151" class="a-flow"/><path d="M455 151 L518 151" class="a-flow"/>
 
           <text x="380" y="232" class="a-loop">04 · LEARNING  —  trajectory → evaluate → refine ↺</text>
+
+          <rect x="10" y="304" width="740" height="46" rx="12" class="a-exec-rect"/>
+          <text x="28" y="332" class="a-label-exec">06 · EXECUTION  —  connectors · templates · risk · routing · RBAC · dry-run</text>
+          <path d="M380 290 L380 304" class="a-flow"/>
         </svg>
       </div>
     </section>
@@ -163,7 +298,7 @@ Erdos-FAI — healthcare-triage demo
     <!-- GET STARTED -->
     <section id="start" class="start">
       <p class="section-kicker">Get started</p>
-      <h2>From idea to a governed pipeline in a few lines</h2>
+      <h2>From idea to a governed, executed workflow in a few lines</h2>
       <div class="start-grid">
         <div class="start-step">
           <h4>Install</h4>
@@ -191,19 +326,91 @@ pipe = Pipeline(<span class="c-str">"support"</span>, [
 print(pipe.run(<span class="c-str">"Dashboard is down"</span>).final_output)</code></pre>
           </div>
         </div>
+        <div class="start-step">
+          <h4>Connect &amp; execute a workflow</h4>
+          <div class="code-block">
+            <button class="copy" data-copy='from erdos_fai import TEMPLATES, Simulator, Signal' title="Copy">copy</button>
+<pre><code><span class="c-key">from</span> erdos_fai <span class="c-key">import</span> TEMPLATES, Simulator, Signal
+
+wf = TEMPLATES.get(<span class="c-str">"inpatient-deterioration"</span>)
+
+<span class="c-dim"># dry-run before anything touches a live system</span>
+report = Simulator().simulate(wf, signals=[
+    Signal(<span class="c-str">"news2"</span>, 7, floor=0, ceiling=9),
+])
+print(report.render())   <span class="c-dim"># executed=False, writes gated</span></code></pre>
+          </div>
+        </div>
       </div>
-      <p class="start-note">No API key? It runs offline on the built-in echo provider. Set <code>ANTHROPIC_API_KEY</code> to run on <code>claude-opus-4-8</code>.</p>
+      <p class="start-note">No API key? It runs offline on the built-in echo provider. Try
+        <code>erdos-fai demo</code> and <code>erdos-fai execute</code>. Set
+        <code>ANTHROPIC_API_KEY</code> to run on <code>claude-opus-4-8</code>.</p>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="pricing">
+      <p class="section-kicker">Deployment</p>
+      <h2>Run it your way</h2>
+      <p class="section-sub">ErdosFAI is open source and runs anywhere — the deployment tiers describe support and
+        scale, not a paywall on the framework.</p>
+      <div class="price-grid">
+        <article class="price-card reveal">
+          <h3>Open Source</h3>
+          <p class="price"><b>Free</b><span>Apache-2.0</span></p>
+          <ul>
+            <li>All six layers, full source</li>
+            <li>60+ connectors &amp; 8 templates</li>
+            <li>Runs offline, no API key</li>
+            <li>Community support</li>
+          </ul>
+          <a class="btn btn-ghost" href="https://github.com/sunnyinAI/ErdosFC">Get the code</a>
+        </article>
+        <article class="price-card price-featured reveal">
+          <span class="pill-new">Most popular</span>
+          <h3>Team</h3>
+          <p class="price"><b>Self-host</b><span>single department</span></p>
+          <ul>
+            <li>Everything in Open Source</li>
+            <li>Custom connectors &amp; templates</li>
+            <li>RBAC &amp; approval routing setup</li>
+            <li>Onboarding &amp; best-practice review</li>
+          </ul>
+          <a class="btn btn-primary" href="#start">Start building</a>
+        </article>
+        <article class="price-card reveal">
+          <h3>Enterprise / Private</h3>
+          <p class="price"><b>Talk to us</b><span>multi-site &amp; ICU</span></p>
+          <ul>
+            <li>Private deployment &amp; data residency</li>
+            <li>Complex inpatient &amp; operational flows</li>
+            <li>SSO, audit export, compliance review</li>
+            <li>Priority support</li>
+          </ul>
+          <a class="btn btn-ghost" href="https://github.com/sunnyinAI/ErdosFC">Contact</a>
+        </article>
+      </div>
     </section>
 
     <!-- SUITE -->
     <section id="suite" class="suite">
       <p class="section-kicker">The product suite</p>
-      <h2>Plan · Build · Test · Govern — in one platform</h2>
+      <h2>Plan · Build · Test · Execute · Govern — in one platform</h2>
       <div class="suite-grid">
         <div class="suite-card"><h3>Agent Builder</h3><p>Compose deep agents — skills, tools, memory, MCP — with guardrails baked in.</p></div>
         <div class="suite-card"><h3>Evaluation &amp; QA</h3><p>Continuous scoring, regression detection, and per-metric reports.</p></div>
         <div class="suite-card"><h3>Continual Learning</h3><p>Agents adapt in production, getting smarter with every run.</p></div>
-        <div class="suite-card"><h3>Governance &amp; Audit</h3><p>HITL approvals, write gates, cost control, and tamper-evident logs.</p></div>
+        <div class="suite-card"><h3>Workflow Execution</h3><p>Connectors, templates, risk scoring, task routing, and SLA escalation.</p></div>
+        <div class="suite-card"><h3>Governance &amp; Audit</h3><p>HITL approvals, RBAC, write gates, cost control, and tamper-evident logs.</p></div>
+      </div>
+    </section>
+
+    <!-- CLOSING CTA -->
+    <section class="cta-band reveal">
+      <h2>From signals to follow-through — across every connected system.</h2>
+      <p>Build governed agents, connect them to your real tools, and put them to work safely.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#start">Quickstart</a>
+        <a class="btn btn-ghost" href="https://github.com/sunnyinAI/ErdosFC">Star on GitHub ↗</a>
       </div>
     </section>
   </main>
@@ -211,14 +418,18 @@ print(pipe.run(<span class="c-str">"Dashboard is down"</span>).final_output)</co
   <footer class="footer">
     <div class="footer-brand">
       <span>Erdos<b>FAI</b></span>
-      <p>Erdos Federated Agentic Intelligence — build, test, deploy, reinforce, and govern AI agents from one runtime. Part of <a href="../" style="border-bottom:1px solid var(--g1)">ErdosFL</a>.</p>
+      <p>Erdos Federated Agentic Intelligence — build, test, deploy, reinforce, govern, and execute AI agents from one runtime. Part of <a href="../" style="border-bottom:1px solid var(--g1)">ErdosFL</a>.</p>
     </div>
     <div class="footer-links">
-      <a href="../">ErdosFL home</a>
+      <a href="#how">How it works</a>
+      <a href="#layers">Platform</a>
+      <a href="#integrations">Integrations</a>
+      <a href="#usecases">Use cases</a>
+      <a href="#pricing">Pricing</a>
       <a href="../fc/">ErdosFC — Federated Computing</a>
       <a href="https://github.com/sunnyinAI/ErdosFC">GitHub</a>
     </div>
-    <p class="footer-fine">© 2026 Sunny Gupta · Apache-2.0. ErdosFAI is an independent, educational agent-lifecycle framework, part of the ErdosFL project.</p>
+    <p class="footer-fine">© 2026 Sunny Gupta · Apache-2.0. ErdosFAI is an independent, educational agent-lifecycle &amp; execution framework, part of the ErdosFL project. Connector and product names are trademarks of their respective owners, used here only to describe integration targets.</p>
   </footer>
 
   <script src="app.js"></script>

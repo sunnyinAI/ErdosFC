@@ -51,6 +51,27 @@ from .learning import Evaluator, Optimizer, Trajectory
 # Insights Layer
 from .insights import AuditLog, CostTracker, Dashboard, Tracer
 
+# Execution Layer
+from .execution import (
+    CONNECTORS,
+    TEMPLATES,
+    AccessControl,
+    Connector,
+    ConnectorRegistry,
+    EscalationPolicy,
+    RBACApprover,
+    RiskModel,
+    Role,
+    Signal,
+    Simulator,
+    SLA,
+    Task,
+    TaskRouter,
+    TemplateLibrary,
+    User,
+    WorkflowTemplate,
+)
+
 # Runtime
 from .runtime import (
     Agent,
@@ -111,6 +132,24 @@ __all__ = [
     "CostTracker",
     "Dashboard",
     "Tracer",
+    # Execution
+    "CONNECTORS",
+    "TEMPLATES",
+    "AccessControl",
+    "Connector",
+    "ConnectorRegistry",
+    "EscalationPolicy",
+    "RBACApprover",
+    "RiskModel",
+    "Role",
+    "Signal",
+    "Simulator",
+    "SLA",
+    "Task",
+    "TaskRouter",
+    "TemplateLibrary",
+    "User",
+    "WorkflowTemplate",
     # Runtime
     "Agent",
     "AnthropicProvider",
